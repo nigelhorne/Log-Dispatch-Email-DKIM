@@ -8,5 +8,7 @@ MANIFEST.SKIP
 README.md
 t/00-load.t
 t/dkim/202611.private
+t/internals.t
+t/locales.t
 t/pod.t
 t/vwfmail.t

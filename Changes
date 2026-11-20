@@ -1,6 +1,11 @@
 Revision history for Log-Dispatch-Email-VWFMail
 
-0.01	Fri Nov 20 09:15:00 EST 2026
+0.001.0
 	First release: a Log::Dispatch appender that DKIM signs its mail
 	Signs only for the domain in From:, passing over anything else
 	A missing or unreadable key warns and sends the message unsigned
+	Refactored: private helpers enforced with Sub::Private, messages through i18n()
+	Sender may carry a display name; envelope sender and signing domain use the bare address
+	A line break in To, From or Subject can no longer add a header
+	Key lookup no longer uses glob() and works without HOME in the environment
+	A missing From or To loses the message quietly instead of croaking
