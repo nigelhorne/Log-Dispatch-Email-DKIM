@@ -136,7 +136,7 @@ empty variable counts as unset.
 
 =over 4
 
-=item C<DKIM_DOMAIN> - the signing domain, instead of the one in C<from>
+=item C<DKIM_DOMAIN> - the domain put in the signature (its C<d=> tag), instead of the one in C<from>
 
 =item C<DKIM_SELECTOR> - the DKIM selector, instead of the key's file name
 
@@ -144,9 +144,16 @@ empty variable counts as unset.
 
 =item C<DKIM_KEYDIR> - where to look for C<*.private> (default C<~/dkim>)
 
-=item C<DKIM_SENDMAIL> - the sendmail to hand the message to
+=item C<DKIM_SENDMAIL> - the sendmail to hand the message to (then C<SENDMAIL>)
 
 =back
+
+C<DKIM_DOMAIN> changes only the domain in the signature.  Whether a message is
+signed at all is still decided by the domain in C<from>, so a message from an
+address this host has no key for is sent unsigned whatever C<DKIM_DOMAIN> says.
+C<DKIM_SENDMAIL> wins over C<SENDMAIL>, the variable L<Mail::Send::DKIM> and
+its C<mail-dkim> programme read, so a host that sets only C<SENDMAIL> gets the
+same sendmail from both.  With neither set, F</usr/sbin/sendmail> is used.
 
 The home directory comes from L<File::HomeDir>, so it is found even when the
 process (a CGI script, say) has no C<HOME> in its environment.
@@ -346,8 +353,10 @@ C<DKIM_KEYFILE> or C<DKIM_KEYDIR>.
 
 =item C<DKIM: sendmail failed for SENDER> (warning)
 
-sendmail(1) could not be run or exited with a failure.  Check
-C<DKIM_SENDMAIL> and the mail queue.
+sendmail(1) could not be run or exited with a failure (a non-zero exit
+status).  Check C<DKIM_SENDMAIL> and the mail queue.  When sendmail could not
+be started at all, L<Mail::Send::DKIM> also warns C<cannot run PROGRAM: REASON>,
+where REASON is the operating system's own error text, in the current locale.
 
 =item C<To whom should I be sending this e-mail?> (STDERR)
 
@@ -605,6 +614,17 @@ sub _from_environment :Private
 	return (defined($value) && length($value)) ? $value : undef;
 }
 
+# Purpose: the sendmail named by the SENDMAIL variable that Mail::Send::DKIM
+#	also reads.
+# Exit: its value, or undef if it is unset or empty.
+# Side effects: none.
+sub _plain_sendmail :Private
+{
+	my $value = $ENV{'SENDMAIL'};
+
+	return (defined($value) && length($value)) ? $value : undef;
+}
+
 # Purpose: find the private key to sign with.
 # Entry: none; consults DKIM_KEYFILE, DKIM_KEYDIR and the home
 #	directory.
@@ -714,7 +734,7 @@ sub _deliver :Private
 		'signing_domain' => $key->{'domain'},
 		'selector' => $key->{'selector'},
 		'keyfile' => $key->{'keyfile'},
-		'sendmail' => $self->_from_environment('sendmail') // $DEFAULT_SENDMAIL,
+		'sendmail' => $self->_from_environment('sendmail') // _plain_sendmail() // $DEFAULT_SENDMAIL,
 	);
 
 	my $text = join("\n",

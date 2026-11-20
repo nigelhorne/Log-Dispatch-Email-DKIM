@@ -72,11 +72,18 @@ name is used, and its name is the selector.  Each can be overridden in the
 environment, which is also how a test points it at a capture script.  An
 empty variable counts as unset.
 
-- `DKIM_DOMAIN` - the signing domain, instead of the one in `from`
+- `DKIM_DOMAIN` - the domain put in the signature (its `d=` tag), instead of the one in `from`
 - `DKIM_SELECTOR` - the DKIM selector, instead of the key's file name
 - `DKIM_KEYFILE` - the private key to sign with
 - `DKIM_KEYDIR` - where to look for `*.private` (default `~/dkim`)
-- `DKIM_SENDMAIL` - the sendmail to hand the message to
+- `DKIM_SENDMAIL` - the sendmail to hand the message to (then `SENDMAIL`)
+
+`DKIM_DOMAIN` changes only the domain in the signature.  Whether a message is
+signed at all is still decided by the domain in `from`, so a message from an
+address this host has no key for is sent unsigned whatever `DKIM_DOMAIN` says.
+`DKIM_SENDMAIL` wins over `SENDMAIL`, the variable [Mail::Send::DKIM](https://metacpan.org/pod/Mail%3A%3ASend%3A%3ADKIM) and
+its `mail-dkim` programme read, so a host that sets only `SENDMAIL` gets the
+same sendmail from both.  With neither set, `/usr/sbin/sendmail` is used.
 
 The home directory comes from [File::HomeDir](https://metacpan.org/pod/File%3A%3AHomeDir), so it is found even when the
 process (a CGI script, say) has no `HOME` in its environment.
@@ -245,8 +252,10 @@ Unknown keys are ignored.
 
 - `DKIM: sendmail failed for SENDER` (warning)
 
-    sendmail(1) could not be run or exited with a failure.  Check
-    `DKIM_SENDMAIL` and the mail queue.
+    sendmail(1) could not be run or exited with a failure (a non-zero exit
+    status).  Check `DKIM_SENDMAIL` and the mail queue.  When sendmail could not
+    be started at all, [Mail::Send::DKIM](https://metacpan.org/pod/Mail%3A%3ASend%3A%3ADKIM) also warns `cannot run PROGRAM: REASON`,
+    where REASON is the operating system's own error text, in the current locale.
 
 - `To whom should I be sending this e-mail?` (STDERR)
 
@@ -346,6 +355,41 @@ None of its own.  An unknown key is returned as the text.
 look the key up; if absent, return the key
 if the entry is a hash of variants, choose one by gender, then count
 format the entry with its named arguments
+```
+
+## Examples
+
+A complete log4perl configuration file, which logs everything to a file and
+emails anything of level `WARN` or above.  Save it as, say,
+`myapp.l4pconf` and load it with `Log::Log4perl->init('myapp.l4pconf')`.
+
+```
+log4perl.logger.myapp=TRACE, A1, A2
+
+log4perl.appender.A1=Log::Dispatch::File
+log4perl.appender.A1.Filter=RangeAll
+log4perl.appender.A1.filename=/tmp/myapp.log
+log4perl.appender.A1.mode=append
+log4perl.appender.A1.layout=Log::Log4perl::Layout::PatternLayout
+log4perl.appender.A1.layout.ConversionPattern=%d %p> %F{1}:%L %M - %m%n
+
+log4perl.appender.A2=Log::Dispatch::Email::DKIM
+log4perl.appender.A2.Filter=RangeError
+log4perl.appender.A2.from=webmaster@example.com
+log4perl.appender.A2.to=admin@example.com
+log4perl.appender.A2.subject=Error in myapp
+log4perl.appender.A2.layout=Log::Log4perl::Layout::PatternLayout
+log4perl.appender.A2.layout.ConversionPattern=%d %p> %F{1}:%L %M - %m%n
+
+log4perl.filter.RangeAll=Log::Log4perl::Filter::LevelRange
+log4perl.filter.RangeAll.LevelMin=TRACE
+log4perl.filter.RangeAll.LevelMax=FATAL
+log4perl.filter.RangeAll.AcceptOnMatch=true
+
+log4perl.filter.RangeError=Log::Log4perl::Filter::LevelRange
+log4perl.filter.RangeError.LevelMin=WARN
+log4perl.filter.RangeError.LevelMax=FATAL
+log4perl.filter.RangeError.AcceptOnMatch=true
 ```
 
 ## Limitations

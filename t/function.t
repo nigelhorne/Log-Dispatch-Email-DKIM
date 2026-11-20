@@ -689,6 +689,7 @@ subtest '_without_stderr: no null device means run anyway' => sub {
 
 	subtest '_deliver: builds and sends a signed message' => sub {
 		$arrange->();
+		local $ENV{'SENDMAIL'};
 		my $obj = new_object('to' => ['a@example.com', 'b@example.com']);
 
 		is($obj->_deliver(FakeAddress->new(), $CFG{'message'}), $obj, 'it returns $self');
@@ -709,6 +710,23 @@ subtest '_without_stderr: no null device means run anyway' => sub {
 		$sendmail_env = '/tmp/capture';
 		$object->_deliver(FakeAddress->new(), 'm');
 		is($seen{'new'}[0]{'sendmail'}, '/tmp/capture', 'DKIM_SENDMAIL is used');
+		restore_all();
+	};
+
+	subtest '_deliver: SENDMAIL is used when DKIM_SENDMAIL is not set' => sub {
+		$arrange->();
+		local $ENV{'SENDMAIL'} = '/tmp/plain-sendmail';
+		$object->_deliver(FakeAddress->new(), 'm');
+		is($seen{'new'}[0]{'sendmail'}, '/tmp/plain-sendmail', 'SENDMAIL is the fallback');
+
+		$sendmail_env = '/tmp/capture';
+		$object->_deliver(FakeAddress->new(), 'm');
+		is($seen{'new'}[1]{'sendmail'}, '/tmp/capture', 'DKIM_SENDMAIL wins over it');
+
+		$ENV{'SENDMAIL'} = '';
+		$sendmail_env = undef;
+		$object->_deliver(FakeAddress->new(), 'm');
+		is($seen{'new'}[2]{'sendmail'}, $CFG{'default_sendmail'}, 'an empty SENDMAIL counts as unset');
 		restore_all();
 	};
 

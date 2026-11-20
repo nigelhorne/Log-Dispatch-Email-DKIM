@@ -19,6 +19,10 @@ WriteMakefile(
 	LICENSE			=> 'gpl_2',	# the bundled LICENSE is GPL version 2
 	PREREQ_PM => {
 		'Carp' => 0,
+		'Scalar::Util' => 0,
+		'autodie' => 0,
+		'base' => 0,
+		'version' => 0,
 		'Email::Address::XS' => 0,
 		'File::Basename' => 0,
 		'File::HomeDir' => 0,
@@ -38,11 +42,17 @@ WriteMakefile(
 		'Test::Most' => 0,
 		'Test::Returns' => 0,
 		'File::Temp' => 0,
+		'File::Path' => 0,
+		'Config' => 0,
+		'Errno' => 0,
 	},
 	clean => { FILES => 'Log-Dispatch-Email-DKIM-*' },
 	dist => $dist,
 	META_MERGE => {	# https://perldoc.perl.org/CPAN::Meta::Spec
 		'meta-spec' => { version => 2 },
+		prereqs => {
+			test => { recommends => { 'Test::Pod' => '1.00' } },
+		},
 		resources => {
 			repository => {
 				type => 'git',
@@ -57,5 +67,6 @@ WriteMakefile(
 			}
 		},
 	},
-	MIN_PERL_VERSION	=> '5.10.1'	# CI covers 5.36 and later; the attributes and // used here need 5.10
+	CONFIGURE_REQUIRES => { 'ExtUtils::MakeMaker' => '6.64' },
+	MIN_PERL_VERSION	=> '5.026'	# Sub::Private needs 5.014 and Params::Validate::Strict 5.026
 );

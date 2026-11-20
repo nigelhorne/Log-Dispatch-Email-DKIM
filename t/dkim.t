@@ -16,6 +16,8 @@ BEGIN {
 	use_ok('Log::Dispatch::Email::DKIM');
 }
 
+# t/dkim/202611.private is a throwaway key made for these tests.  It is not
+# published in any DNS record and signs nothing real.
 my $fixture = File::Spec->catfile('t', 'dkim', '202611.private');
 ok(-r $fixture, "test key $fixture is readable") or BAIL_OUT('no test key');
 

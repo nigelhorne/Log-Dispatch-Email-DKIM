@@ -38,6 +38,10 @@ jobs:
         exclude:
           - os: windows-latest
             perl: "5.40"
+        include:
+          # The oldest Perl the distribution declares
+          - os: ubuntu-latest
+            perl: "5.26"
     name: Perl ${{ matrix.perl }} on ${{ matrix.os }}
     env:
       AUTOMATED_TESTING: 1
