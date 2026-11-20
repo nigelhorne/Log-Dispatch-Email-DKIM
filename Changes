@@ -1,0 +1,6 @@
+Revision history for Log-Dispatch-Email-VWFMail
+
+0.01	Fri Nov 20 09:15:00 EST 2026
+	First release: a Log::Dispatch appender that DKIM signs its mail
+	Signs only for the domain in From:, passing over anything else
+	A missing or unreadable key warns and sends the message unsigned
