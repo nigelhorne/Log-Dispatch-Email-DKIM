@@ -16,10 +16,6 @@ BEGIN {
 	use_ok('Log::Dispatch::Email::DKIM');
 }
 
-# Mail::DKIM is a prerequisite, but say so plainly: without it Web::VWF::Mail
-# falls back to sending unsigned and the signature tests below fail obscurely
-ok(eval { require Mail::DKIM; 1 }, 'Mail::DKIM, which does the signing, is installed');
-
 my $fixture = File::Spec->catfile('t', 'dkim', '202611.private');
 ok(-r $fixture, "test key $fixture is readable") or BAIL_OUT('no test key');
 
@@ -64,8 +60,8 @@ my $settings = {
 
 # The POD describes the environment as the way to point a test at a capture
 # script, so leave nothing of the caller's behind to decide what is signed
-delete @ENV{qw(VWF_MAIL_DOMAIN VWF_MAIL_SELECTOR VWF_MAIL_KEYFILE VWF_MAIL_KEYDIR)};
-$ENV{'VWF_MAIL_SENDMAIL'} = $sendmail;
+delete @ENV{qw(DKIM_DOMAIN DKIM_SELECTOR DKIM_KEYFILE DKIM_KEYDIR)};
+$ENV{'DKIM_SENDMAIL'} = $sendmail;
 
 # Log one message and return what sendmail was handed, empty if nothing was
 # sent, together with the warnings raised on the way
@@ -113,31 +109,36 @@ subtest 'signs with the highest key in ~/dkim' => sub {
 	is(scalar(grep { /no DKIM key/ } @{$warnings}), 0, 'no warning when a key is found');
 };
 
-subtest 'VWF_MAIL_KEYDIR chooses where to look' => sub {
+subtest 'DKIM_KEYDIR chooses where to look' => sub {
 	my ($sent, $warnings) = log_message("Something went wrong\n",
-		{ 'VWF_MAIL_KEYDIR' => keys_in(tempdir(CLEANUP => 1), '999') });
+		{ 'DKIM_KEYDIR' => keys_in(tempdir(CLEANUP => 1), '999') });
 
-	like($sent, qr/^DKIM-Signature:\s.*\bs=999;/m, 'selector from the key in VWF_MAIL_KEYDIR');
+	like($sent, qr/^DKIM-Signature:\s.*\bs=999;/m, 'selector from the key in DKIM_KEYDIR');
 	is(scalar(grep { /no DKIM key/ } @{$warnings}), 0, 'no warning when a key is found');
 };
 
-subtest 'VWF_MAIL_KEYFILE, VWF_MAIL_SELECTOR and VWF_MAIL_DOMAIN override the defaults' => sub {
+subtest 'DKIM_KEYFILE and DKIM_SELECTOR override the defaults' => sub {
 	my ($sent) = log_message("Something went wrong\n",
 		{
-			'VWF_MAIL_KEYFILE' => File::Spec->catfile(keys_in(tempdir(CLEANUP => 1), '111'), '111.private'),
-			'VWF_MAIL_SELECTOR' => 'custom',
-			'VWF_MAIL_DOMAIN' => 'example.com',
+			'DKIM_KEYFILE' => File::Spec->catfile(keys_in(tempdir(CLEANUP => 1), '111'), '111.private'),
+			'DKIM_SELECTOR' => 'custom',
 		});
 
-	like($sent, qr/^DKIM-Signature:\s.*\bd=example\.com;/m, 'VWF_MAIL_DOMAIN is signed for');
-	like($sent, qr/^DKIM-Signature:\s.*\bs=custom;/m, 'VWF_MAIL_SELECTOR is used');
+	like($sent, qr/^DKIM-Signature:\s.*\bs=custom;/m, 'DKIM_SELECTOR is used');
+};
+
+subtest 'DKIM_DOMAIN overrides the signing domain' => sub {
+	my ($sent) = log_message("Something went wrong\n",
+		{ 'DKIM_DOMAIN' => 'example.com', 'DKIM_KEYDIR' => keys_in(tempdir(CLEANUP => 1), '111') });
+
+	like($sent, qr/^DKIM-Signature:\s.*\bd=example\.com;/m, 'DKIM_DOMAIN is signed for');
 };
 
 subtest 'a missing key warns and still sends, unsigned' => sub {
 	my $empty = File::Spec->catdir(tempdir(CLEANUP => 1), 'empty');
 	make_path($empty);
 
-	my ($sent, $warnings) = log_message("Something went wrong\n", { 'VWF_MAIL_KEYDIR' => $empty });
+	my ($sent, $warnings) = log_message("Something went wrong\n", { 'DKIM_KEYDIR' => $empty });
 
 	like((join '', @{$warnings}), qr/no DKIM key for bandsman\.co\.uk; sending unsigned/, 'warns that the message is unsigned');
 	ok($sent, 'the message is still sent');

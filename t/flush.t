@@ -30,9 +30,9 @@ chmod(0700, $sendmail) or die "Cannot chmod $sendmail: $!";
 # expected and is caught in new_appender's caller
 my $no_keys = tempdir(CLEANUP => 1);
 
-delete @ENV{qw(VWF_MAIL_DOMAIN VWF_MAIL_SELECTOR VWF_MAIL_KEYFILE)};
-$ENV{'VWF_MAIL_SENDMAIL'} = $sendmail;
-$ENV{'VWF_MAIL_KEYDIR'} = $no_keys;
+delete @ENV{qw(DKIM_DOMAIN DKIM_SELECTOR DKIM_KEYFILE)};
+$ENV{'DKIM_SENDMAIL'} = $sendmail;
+$ENV{'DKIM_KEYDIR'} = $no_keys;
 
 # Each test gets an empty directory for the mail it sends
 sub fresh_capture_dir {

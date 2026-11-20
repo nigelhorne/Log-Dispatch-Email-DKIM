@@ -12,8 +12,8 @@ Pattern 1: from a log4perl configuration file.
 
 ```
 log4perl.appender.A2=Log::Dispatch::Email::DKIM
-log4perl.appender.A2.from=webmaster@bandsman.co.uk
-log4perl.appender.A2.to=njh@bandsman.co.uk
+log4perl.appender.A2.from=webmaster@example.com
+log4perl.appender.A2.to=admin@example.com
 log4perl.appender.A2.subject=Error in shop/index.fcgi
 ```
 
@@ -26,8 +26,8 @@ my $log = Log::Dispatch->new(
     outputs => [ [
         'Email::DKIM',
         'min_level' => 'error',
-        'from' => 'webmaster@bandsman.co.uk',
-        'to' => ['njh@bandsman.co.uk'],
+        'from' => 'webmaster@example.com',
+        'to' => ['admin@example.com'],
         'subject' => 'Error in shop/index.fcgi',
         'buffered' => 0,
     ] ],
@@ -39,22 +39,22 @@ Pattern 3: choose the key and the selector with environment variables (for
 example in the web server settings).
 
 ```
-SetEnv VWF_MAIL_KEYFILE /home/site/dkim/202611.private
-SetEnv VWF_MAIL_SELECTOR 202611
+SetEnv DKIM_KEYFILE /home/site/dkim/202611.private
+SetEnv DKIM_SELECTOR 202611
 ```
 
 Pattern 4: in a test, send to a script that saves the message instead of
 to sendmail.
 
 ```
-local $ENV{'VWF_MAIL_SENDMAIL'} = '/tmp/capture-script';
+local $ENV{'DKIM_SENDMAIL'} = '/tmp/capture-script';
 $log->error("Test message\n");
 ```
 
 ## Description
 
 Sends a log message the way [Log::Dispatch::Email::Sendmail](https://metacpan.org/pod/Log%3A%3ADispatch%3A%3AEmail%3A%3ASendmail) does, but signs
-it with [Web::VWF::Mail](https://metacpan.org/pod/Web%3A%3AVWF%3A%3AMail) first, so the message carries a `DKIM-Signature`
+it with [Mail::Send::DKIM](https://metacpan.org/pod/Mail%3A%3ASend%3A%3ADKIM) first, so the message carries a `DKIM-Signature`
 for the domain it claims to come from.  An unsigned `webmaster@` message and
 a forgery are indistinguishable in a DMARC report; signing is what tells them
 apart, and what lets the copy a mailing list forwards still authenticate.
@@ -72,11 +72,11 @@ name is used, and its name is the selector.  Each can be overridden in the
 environment, which is also how a test points it at a capture script.  An
 empty variable counts as unset.
 
-- `VWF_MAIL_DOMAIN` - the signing domain, instead of the one in `from`
-- `VWF_MAIL_SELECTOR` - the DKIM selector, instead of the key's file name
-- `VWF_MAIL_KEYFILE` - the private key to sign with
-- `VWF_MAIL_KEYDIR` - where to look for `*.private` (default `~/dkim`)
-- `VWF_MAIL_SENDMAIL` - the sendmail to hand the message to
+- `DKIM_DOMAIN` - the signing domain, instead of the one in `from`
+- `DKIM_SELECTOR` - the DKIM selector, instead of the key's file name
+- `DKIM_KEYFILE` - the private key to sign with
+- `DKIM_KEYDIR` - where to look for `*.private` (default `~/dkim`)
+- `DKIM_SENDMAIL` - the sendmail to hand the message to
 
 The home directory comes from [File::HomeDir](https://metacpan.org/pod/File%3A%3AHomeDir), so it is found even when the
 process (a CGI script, say) has no `HOME` in its environment.
@@ -89,7 +89,7 @@ sends ONE e-mail when the program ends (or when `flush` is called).  Set
 - **You cannot give the appender a key file in its settings.**  Log::Dispatch
 throws away settings it does not know.  Use the environment variables in
 ["CONFIGURATION"](#configuration) instead.
-- **An empty environment variable means "not set".**  `VWF_MAIL_DOMAIN=""` does
+- **An empty environment variable means "not set".**  `DKIM_DOMAIN=""` does
 not turn anything off.
 - **The signing domain comes from `from`.**  If `from` is
 `webmaster@example.com` the message is signed for `example.com`.  Your DKIM
@@ -174,11 +174,11 @@ by warning, not by the return value, because Log::Dispatch ignores it.
 #### Side Effects
 
 Runs sendmail(1).  While it runs, STDERR is pointed at the null device
-because DreamHost's sendmail writes an IPv6 warning there that would corrupt
+because some sendmail implementations write a warning there that would corrupt
 CGI output.
 
 A missing or unreadable key is not an error: it warns and sends the message
-unsigned, which is what `Web::VWF::Mail` does for a signing problem of any
+unsigned, which is what [Mail::Send::DKIM](https://metacpan.org/pod/Mail%3A%3ASend%3A%3ADKIM) does for a signing problem of any
 kind.  A line break in the subject, From or To is replaced by a space, so a
 logged value cannot add a header of its own.
 
@@ -203,8 +203,8 @@ my $log = Log::Dispatch->new(
     outputs => [ [
         'Email::DKIM',
         'min_level' => 'error',
-        'from' => 'webmaster@bandsman.co.uk',
-        'to' => ['njh@bandsman.co.uk'],
+        'from' => 'webmaster@example.com',
+        'to' => ['admin@example.com'],
         'subject' => 'Error in shop/index.fcgi',
     ] ],
 );
@@ -213,8 +213,8 @@ my $log = Log::Dispatch->new(
 $log->error("Something went wrong\n");
 
 # Test a different key and a capture script instead of sendmail
-local $ENV{'VWF_MAIL_KEYFILE'} = '/tmp/keys/202611.private';
-local $ENV{'VWF_MAIL_SENDMAIL'} = '/tmp/capture';
+local $ENV{'DKIM_KEYFILE'} = '/tmp/keys/202611.private';
+local $ENV{'DKIM_SENDMAIL'} = '/tmp/capture';
 ```
 
 #### Api Specification
@@ -241,12 +241,12 @@ Unknown keys are ignored.
 
     No readable key, domain or selector could be found.  The message is sent
     without a signature.  Put a `SELECTOR.private` key in `~/dkim`, or set
-    `VWF_MAIL_KEYFILE` or `VWF_MAIL_KEYDIR`.
+    `DKIM_KEYFILE` or `DKIM_KEYDIR`.
 
 - `DKIM: sendmail failed for SENDER` (warning)
 
     sendmail(1) could not be run or exited with a failure.  Check
-    `VWF_MAIL_SENDMAIL` and the mail queue.
+    `DKIM_SENDMAIL` and the mail queue.
 
 - `To whom should I be sending this e-mail?` (STDERR)
 
@@ -365,7 +365,7 @@ if it sorts last, it is the one that signs.
 - The message goes out only once: if sendmail(1) fails the message is lost, not
 queued for retry, and the only record is the warning.
 - A `from` with no valid address, or a missing recipient, loses the message.
-This used to be a fatal error from [Web::VWF::Mail](https://metacpan.org/pod/Web%3A%3AVWF%3A%3AMail), which a logger should
+This used to be a fatal error from the underlying mailer, which a logger should
 not raise.
 - No MIME headers are added: the body has no declared charset and the subject
 is not encoded.  See ["ENCODING"](#encoding).

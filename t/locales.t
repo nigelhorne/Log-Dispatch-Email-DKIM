@@ -2,7 +2,7 @@
 
 # Operating-system error strings are translated by the C library according to
 # LC_ALL.  The one such string this appender reaches is the "No such file or
-# directory" that Web::VWF::Mail carps when sendmail cannot be run, so check
+# directory" that Mail::Send::DKIM carps when sendmail cannot be run, so check
 # that it is neither lost nor mangled, and that the appender still raises its
 # own warning, in every locale.
 #
@@ -62,7 +62,7 @@ foreach my $locale (@locales) {
 		# PERL_BADLANG=0: a locale that is not installed here is not worth a
 		# warning from perl itself; the child falls back to C and still agrees
 		# with itself about what ENOENT says
-		local @ENV{qw(LC_ALL LANG LANGUAGE PERL_BADLANG VWF_MAIL_SENDMAIL VWF_MAIL_KEYDIR TEST_LIB)} =
+		local @ENV{qw(LC_ALL LANG LANGUAGE PERL_BADLANG DKIM_SENDMAIL DKIM_KEYDIR TEST_LIB)} =
 			($locale, $locale, $locale, 0, $missing, File::Spec->catdir(tempdir(CLEANUP => 1)), $lib);
 
 		open(my $pipe, '-|', $^X, '-e', $child) or BAIL_OUT("cannot run $^X: $!");
@@ -73,16 +73,10 @@ foreach my $locale (@locales) {
 		my @warnings = grep { /\AWARNING:/ } @lines;
 
 		ok(defined($expected) && length($expected), 'the child worked out the OS string for ENOENT');
-		ok((grep { /Cannot run \Q$missing\E: / } @warnings), 'Web::VWF::Mail names the program it could not run')
+		ok((grep { /cannot run \Q$missing\E: / } @warnings), 'Mail::Send::DKIM names the program it could not run')
 			or diag(explain(\@lines));
 
-		# Its POD promises the reason too, but it passes $! to carp(), which
-		# clobbers it before it is formatted, so the reason comes out empty.
-		# That is a bug in Web::VWF::Mail, not in this appender.
-		TODO: {
-			local $TODO = 'Web::VWF::Mail loses $! by passing it to carp()';
-			ok((grep { /Cannot run \Q$missing\E: \Q$expected\E/ } @warnings), 'the OS string appears, intact, in the warning');
-		}
+		ok((grep { /cannot run \Q$missing\E: \Q$expected\E/ } @warnings), 'the OS string appears, intact, in the warning');
 		ok((grep { /DKIM: sendmail failed for webmaster\@bandsman\.co\.uk/ } @warnings), 'and the appender raises its own warning');
 		ok((grep { /DKIM: no DKIM key for bandsman\.co\.uk; sending unsigned/ } @warnings), 'and says the message is unsigned');
 	};

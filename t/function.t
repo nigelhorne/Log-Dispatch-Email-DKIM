@@ -29,7 +29,7 @@ use Scalar::Util qw(weaken);
 BEGIN {
 	use_ok('Log::Dispatch::Email::DKIM');
 }
-require Web::VWF::Mail;	# loaded here so that its methods can be mocked
+require Mail::Send::DKIM;	# loaded here so that its methods can be mocked
 
 # Strings and numbers the tests share, named once
 Readonly my $CLASS => 'Log::Dispatch::Email::DKIM';
@@ -44,9 +44,9 @@ Readonly my %CFG => (
 );
 Readonly my @SETTINGS => qw(domain selector keyfile keydir sendmail);
 Readonly my %ENV_NAME => (
-	'domain' => 'VWF_MAIL_DOMAIN', 'selector' => 'VWF_MAIL_SELECTOR',
-	'keyfile' => 'VWF_MAIL_KEYFILE', 'keydir' => 'VWF_MAIL_KEYDIR',
-	'sendmail' => 'VWF_MAIL_SENDMAIL',
+	'domain' => 'DKIM_DOMAIN', 'selector' => 'DKIM_SELECTOR',
+	'keyfile' => 'DKIM_KEYFILE', 'keydir' => 'DKIM_KEYDIR',
+	'sendmail' => 'DKIM_SENDMAIL',
 );
 
 # A stand-in for an Email::Address::XS object
@@ -340,7 +340,7 @@ subtest '_validated_arguments: the real validator, hostile input' => sub {
 	my $big = 'x' x $CFG{'big_message_size'};
 	is(length($object->_validated_arguments('send_email', ['message', $big])->{'message'}), $CFG{'big_message_size'}, 'a message of a million characters is accepted whole');
 	is($object->_validated_arguments('send_email', [{ 'message' => 'a', 'level' => 'error', 'name' => 'x' }])->{'message'}, 'a', 'extra keys from Log::Dispatch are ignored');
-	is($object->_validated_arguments('send_email', ['message', "line\r\nbreak"])->{'message'}, "line\r\nbreak", 'the body is not altered (line breaks are fixed later, by Web::VWF::Mail)');
+	is($object->_validated_arguments('send_email', ['message', "line\r\nbreak"])->{'message'}, "line\r\nbreak", 'the body is not altered (line breaks are fixed later, by Mail::Send::DKIM)');
 };
 
 # -------------------------------------------------------- _parse_address
@@ -438,13 +438,13 @@ subtest '_from_environment: reads the variable that goes with a setting' => sub 
 };
 
 subtest '_from_environment: empty means unset, and nothing else does' => sub {
-	local $ENV{'VWF_MAIL_DOMAIN'} = '';
+	local $ENV{'DKIM_DOMAIN'} = '';
 	is($object->_from_environment('domain'), undef, 'an empty string is undef');
-	$ENV{'VWF_MAIL_DOMAIN'} = '0';
+	$ENV{'DKIM_DOMAIN'} = '0';
 	is($object->_from_environment('domain'), '0', 'the string 0 is a value');
-	$ENV{'VWF_MAIL_DOMAIN'} = " \n";
+	$ENV{'DKIM_DOMAIN'} = " \n";
 	is($object->_from_environment('domain'), " \n", 'white space is a value');
-	$ENV{'VWF_MAIL_DOMAIN'} = "evil\nBcc: x";
+	$ENV{'DKIM_DOMAIN'} = "evil\nBcc: x";
 	is($object->_from_environment('domain'), "evil\nBcc: x", 'the value is not altered here (the signer rejects bad domains)');
 };
 
@@ -462,8 +462,8 @@ subtest '_from_environment: a setting it does not know croaks' => sub {
 
 subtest '_find_key_file: the file named in the environment wins' => sub {
 	my $dir = populate(tempdir(CLEANUP => 1), '999.private');
-	local $ENV{'VWF_MAIL_KEYFILE'} = '/no/such/202611.private';
-	local $ENV{'VWF_MAIL_KEYDIR'} = $dir;
+	local $ENV{'DKIM_KEYFILE'} = '/no/such/202611.private';
+	local $ENV{'DKIM_KEYDIR'} = $dir;
 
 	is($object->_find_key_file(), '/no/such/202611.private', 'returned as given, even if it does not exist');
 };
@@ -471,7 +471,7 @@ subtest '_find_key_file: the file named in the environment wins' => sub {
 subtest '_find_key_file: highest name in the key directory' => sub {
 	clean_environment();
 	my $dir = populate(tempdir(CLEANUP => 1), qw(202611.private 202701.private 202512.private notes.txt 999.pem));
-	local $ENV{'VWF_MAIL_KEYDIR'} = $dir;
+	local $ENV{'DKIM_KEYDIR'} = $dir;
 
 	my $found = $object->_find_key_file();
 	is($found, File::Spec->catfile($dir, '202701.private'), 'the highest .private name');
@@ -482,17 +482,17 @@ subtest '_find_key_file: highest name in the key directory' => sub {
 subtest '_find_key_file: nothing usable gives undef' => sub {
 	clean_environment();
 	my $tmp = tempdir(CLEANUP => 1);
-	local $ENV{'VWF_MAIL_KEYDIR'} = populate(tempdir(CLEANUP => 1));
+	local $ENV{'DKIM_KEYDIR'} = populate(tempdir(CLEANUP => 1));
 	is($object->_find_key_file(), undef, 'an empty directory');
 
-	$ENV{'VWF_MAIL_KEYDIR'} = populate(tempdir(CLEANUP => 1), 'readme.txt', 'private', 'x.private.bak');
+	$ENV{'DKIM_KEYDIR'} = populate(tempdir(CLEANUP => 1), 'readme.txt', 'private', 'x.private.bak');
 	is($object->_find_key_file(), undef, 'no file with the suffix');
 
-	$ENV{'VWF_MAIL_KEYDIR'} = File::Spec->catdir($tmp, 'missing');
+	$ENV{'DKIM_KEYDIR'} = File::Spec->catdir($tmp, 'missing');
 	is($object->_find_key_file(), undef, 'a directory that does not exist');
 
-	$ENV{'VWF_MAIL_KEYDIR'} = populate(tempdir(CLEANUP => 1), 'afile');
-	$ENV{'VWF_MAIL_KEYDIR'} = File::Spec->catfile($ENV{'VWF_MAIL_KEYDIR'}, 'afile');
+	$ENV{'DKIM_KEYDIR'} = populate(tempdir(CLEANUP => 1), 'afile');
+	$ENV{'DKIM_KEYDIR'} = File::Spec->catfile($ENV{'DKIM_KEYDIR'}, 'afile');
 	is($object->_find_key_file(), undef, 'a plain file where the directory should be');
 };
 
@@ -500,7 +500,7 @@ subtest '_find_key_file: only regular files are keys' => sub {
 	clean_environment();
 	my $dir = populate(tempdir(CLEANUP => 1), '202611.private', '999999.private/');
 	symlink('/no/such/target', File::Spec->catfile($dir, '999998.private'));
-	local $ENV{'VWF_MAIL_KEYDIR'} = $dir;
+	local $ENV{'DKIM_KEYDIR'} = $dir;
 
 	is($object->_find_key_file(), File::Spec->catfile($dir, '202611.private'), 'a directory and a dangling link with a higher name are passed over');
 };
@@ -510,7 +510,7 @@ subtest '_find_key_file: awkward directory and file names' => sub {
 	my $dir = File::Spec->catdir(tempdir(CLEANUP => 1), 'my keys [1] *');
 	mkdir($dir) or BAIL_OUT("mkdir: $!");
 	populate($dir, 'a b.private', 'z[1].private', '*.private');
-	local $ENV{'VWF_MAIL_KEYDIR'} = $dir;
+	local $ENV{'DKIM_KEYDIR'} = $dir;
 
 	is($object->_find_key_file(), File::Spec->catfile($dir, 'z[1].private'), 'spaces and glob characters are plain characters');
 };
@@ -519,7 +519,7 @@ subtest '_find_key_file: a directory that cannot be read is no key, not a crash'
 	clean_environment();
 	my $dir = populate(tempdir(CLEANUP => 1), '202611.private');
 	chmod(0000, $dir);
-	local $ENV{'VWF_MAIL_KEYDIR'} = $dir;
+	local $ENV{'DKIM_KEYDIR'} = $dir;
 
 	SKIP: {
 		skip('this user can read a directory with no permissions', 2) if(opendir(my $handle, $dir));
@@ -542,16 +542,16 @@ subtest '_find_key_file: falls back to ~/dkim, and copes with no home' => sub {
 	mock 'File::HomeDir::my_home' => sub { undef };
 	is($object->_find_key_file(), undef, 'no home directory: no key, and no relative-path surprise');
 
-	local $ENV{'VWF_MAIL_KEYDIR'} = '';
+	local $ENV{'DKIM_KEYDIR'} = '';
 	mock 'File::HomeDir::my_home' => sub { $home };
-	is($object->_find_key_file(), File::Spec->catfile($home, 'dkim', '202611.private'), 'an empty VWF_MAIL_KEYDIR counts as unset');
+	is($object->_find_key_file(), File::Spec->catfile($home, 'dkim', '202611.private'), 'an empty DKIM_KEYDIR counts as unset');
 
 	restore_all();
 };
 
 subtest '_find_key_file: localises $_' => sub {
 	clean_environment();
-	local $ENV{'VWF_MAIL_KEYDIR'} = populate(tempdir(CLEANUP => 1), '1.private', '2.private');
+	local $ENV{'DKIM_KEYDIR'} = populate(tempdir(CLEANUP => 1), '1.private', '2.private');
 	local $_ = 'sentinel';
 	$object->_find_key_file();
 	is($_, 'sentinel', '$_ is left alone');
@@ -673,14 +673,14 @@ subtest '_without_stderr: no null device means run anyway' => sub {
 	my (%seen, @warned, $close_result, $signing_key, $sendmail_env);
 
 	my $arrange = sub {
-		%seen = ('new' => [], 'print' => []);
+		%seen = ('new' => [], 'sign' => [], 'send' => []);
 		@warned = ();
-		$close_result = 1;
+		$close_result = 0;
 		$sendmail_env = undef;
 		$signing_key = { 'domain' => 'example.com', 'selector' => '202611', 'keyfile' => $0 };
-		mock 'Web::VWF::Mail::new' => sub { shift; push @{ $seen{'new'} }, {@_}; return bless {}, 'Web::VWF::Mail' };
-		mock 'Web::VWF::Mail::print' => sub { shift; push @{ $seen{'print'} }, [@_]; 1 };
-		mock 'Web::VWF::Mail::close' => sub { $close_result };
+		mock 'Mail::Send::DKIM::new' => sub { shift; push @{ $seen{'new'} }, {@_}; return bless {}, 'Mail::Send::DKIM' };
+		mock 'Mail::Send::DKIM::sign' => sub { shift; push @{ $seen{'sign'} }, [@_]; return "DKIM-Signature: x\n$_[0]" };
+		mock 'Mail::Send::DKIM::send' => sub { shift; push @{ $seen{'send'} }, [@_]; return $close_result };
 		mock "${CLASS}::_signing_key" => sub { $signing_key };
 		mock "${CLASS}::_from_environment" => sub { $sendmail_env };
 		mock "${CLASS}::_warn_user" => sub { push @warned, [@_[1 .. $#_]]; $_[0] };
@@ -693,10 +693,12 @@ subtest '_without_stderr: no null device means run anyway' => sub {
 
 		is($obj->_deliver(FakeAddress->new(), $CFG{'message'}), $obj, 'it returns $self');
 		is_deeply($seen{'new'}[0], {
-			'from' => 'webmaster@example.com', 'domain' => 'example.com', 'selector' => '202611',
+			'domains' => ['example.com'], 'signing_domain' => 'example.com', 'selector' => '202611',
 			'keyfile' => $0, 'sendmail' => $CFG{'default_sendmail'},
-		}, 'Web::VWF::Mail is given the bare address, the key details and the default sendmail');
-		is_deeply($seen{'print'}[0], ["To: a\@example.com,b\@example.com\nFrom: $CFG{from}\nSubject: $CFG{subject}", "\n\n", $CFG{'message'}], 'the headers, a blank line and the body');
+		}, 'Mail::Send::DKIM is given the domain, the key details and the default sendmail');
+		my $text = "To: a\@example.com,b\@example.com\nFrom: $CFG{from}\nSubject: $CFG{subject}\n\n$CFG{'message'}";
+		is_deeply($seen{'sign'}[0], [$text], 'the headers, a blank line and the body are signed');
+		is_deeply($seen{'send'}[0], ["DKIM-Signature: x\n$text", '-t', '-f', 'webmaster@example.com'], 'the signed message goes to sendmail with the bare envelope sender');
 		is_deeply(\@warned, [], 'no warning for a signed message');
 		verbose_diag(explain(\%seen));
 		restore_all();
@@ -706,7 +708,7 @@ subtest '_without_stderr: no null device means run anyway' => sub {
 		$arrange->();
 		$sendmail_env = '/tmp/capture';
 		$object->_deliver(FakeAddress->new(), 'm');
-		is($seen{'new'}[0]{'sendmail'}, '/tmp/capture', 'VWF_MAIL_SENDMAIL is used');
+		is($seen{'new'}[0]{'sendmail'}, '/tmp/capture', 'DKIM_SENDMAIL is used');
 		restore_all();
 	};
 
@@ -722,7 +724,8 @@ subtest '_without_stderr: no null device means run anyway' => sub {
 			$arrange->();
 			$signing_key = $key;
 			$object->_deliver(FakeAddress->new(), 'm');
-			is(scalar(@{ $seen{'print'} }), 1, "$name: the message is still sent");
+			is(scalar(@{ $seen{'send'} }), 1, "$name: the message is still sent");
+			is(scalar(@{ $seen{'sign'} }), 0, "$name: and not signed");
 			is_deeply($warned[0], ['no_key', { 'domain' => $shown eq 'unknown domain' ? 'unknown domain' : $shown }], "$name: warns that it is unsigned");
 			restore_all();
 		}
@@ -730,14 +733,14 @@ subtest '_without_stderr: no null device means run anyway' => sub {
 
 	subtest '_deliver: a failed send is reported' => sub {
 		$arrange->();
-		$close_result = 0;
+		$close_result = 1;
 		is($object->_deliver(FakeAddress->new(), 'm'), $object, 'it still returns $self');
 		is_deeply(\@warned, [['send_failed', { 'sender' => 'webmaster@example.com' }]], 'one warning, naming the sender');
 
 		$arrange->();
-		$close_result = undef;
+		$close_result = 75;
 		$object->_deliver(FakeAddress->new(), 'm');
-		is(scalar(@warned), 1, 'an undef result is a failure too');
+		is(scalar(@warned), 1, 'sendmail\'s own exit status is a failure too');
 		restore_all();
 	};
 
@@ -749,7 +752,8 @@ subtest '_without_stderr: no null device means run anyway' => sub {
 			'subject' => "Hi\nBcc: victim\@example.com",
 		);
 		$obj->_deliver(FakeAddress->new(), 'm');
-		my $headers = $seen{'print'}[0][0];
+		my ($headers) = split(/\n\n/, $seen{'send'}[0][0], 2);
+		$headers =~ s/\A(?:DKIM-Signature:[^\n]*\n)//;
 		is(scalar(() = $headers =~ /\n/g), 2, 'three header lines and no more');
 		unlike($headers, qr/^Bcc:/m, 'no header was added');
 		restore_all();
@@ -757,15 +761,15 @@ subtest '_without_stderr: no null device means run anyway' => sub {
 
 	subtest '_deliver: failures from its collaborators are not swallowed' => sub {
 		$arrange->();
-		mock 'Web::VWF::Mail::new' => sub { die "from is not a valid envelope sender\n" };
-		throws_ok { $object->_deliver(FakeAddress->new(), 'm') } qr/\Afrom is not a valid envelope sender\n\z/, 'an error from Web::VWF::Mail reaches the caller';
+		mock 'Mail::Send::DKIM::new' => sub { die "from is not a valid envelope sender\n" };
+		throws_ok { $object->_deliver(FakeAddress->new(), 'm') } qr/\Afrom is not a valid envelope sender\n\z/, 'an error from Mail::Send::DKIM reaches the caller';
 
 		$arrange->();
 		mock "${CLASS}::_signing_key" => sub { die "no key store\n" };
 		throws_ok { $object->_deliver(FakeAddress->new(), 'm') } qr/\Ano key store\n\z/, 'an error from the key lookup too';
 
 		$arrange->();
-		mock 'Web::VWF::Mail::close' => sub { die "pipe closed\n" };
+		mock 'Mail::Send::DKIM::send' => sub { die "pipe closed\n" };
 		throws_ok { $object->_deliver(FakeAddress->new(), 'm') } qr/\Apipe closed\n\z/, 'and one from sending';
 
 		$arrange->();
@@ -889,7 +893,7 @@ subtest 'memory: no cycles, and the object is freed' => sub {
 subtest 'mocks leave nothing behind' => sub {
 	restore_all();
 	lives_ok { $object->_one_line("a\nb") } 'the real routines are back';
-	ok(defined(&Web::VWF::Mail::close), 'and so are the ones outside this module');
+	ok(defined(&Mail::Send::DKIM::send), 'and so are the ones outside this module');
 	is($object->i18n('unknown_domain'), 'unknown domain', 'i18n is the real one');
 };
 

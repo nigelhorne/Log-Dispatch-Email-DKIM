@@ -46,11 +46,11 @@ Readonly my $LINE_BREAKS_RE => qr/[\r\n]+/;
 
 # The environment variable that overrides each setting
 Readonly my %ENV_VAR => (
-	'domain' => 'VWF_MAIL_DOMAIN',
-	'selector' => 'VWF_MAIL_SELECTOR',
-	'keyfile' => 'VWF_MAIL_KEYFILE',
-	'keydir' => 'VWF_MAIL_KEYDIR',
-	'sendmail' => 'VWF_MAIL_SENDMAIL',
+	'domain' => 'DKIM_DOMAIN',
+	'selector' => 'DKIM_SELECTOR',
+	'keyfile' => 'DKIM_KEYFILE',
+	'keydir' => 'DKIM_KEYDIR',
+	'sendmail' => 'DKIM_SENDMAIL',
 );
 
 # Input schema for send_email().  Log::Dispatch hands over more than the
@@ -81,8 +81,8 @@ our %MESSAGES = (
 Pattern 1: from a log4perl configuration file.
 
     log4perl.appender.A2=Log::Dispatch::Email::DKIM
-    log4perl.appender.A2.from=webmaster@bandsman.co.uk
-    log4perl.appender.A2.to=njh@bandsman.co.uk
+    log4perl.appender.A2.from=webmaster@example.com
+    log4perl.appender.A2.to=admin@example.com
     log4perl.appender.A2.subject=Error in shop/index.fcgi
 
 Pattern 2: directly from Log::Dispatch, sending each message at once.
@@ -93,8 +93,8 @@ Pattern 2: directly from Log::Dispatch, sending each message at once.
         outputs => [ [
             'Email::DKIM',
             'min_level' => 'error',
-            'from' => 'webmaster@bandsman.co.uk',
-            'to' => ['njh@bandsman.co.uk'],
+            'from' => 'webmaster@example.com',
+            'to' => ['admin@example.com'],
             'subject' => 'Error in shop/index.fcgi',
             'buffered' => 0,
         ] ],
@@ -104,19 +104,19 @@ Pattern 2: directly from Log::Dispatch, sending each message at once.
 Pattern 3: choose the key and the selector with environment variables (for
 example in the web server settings).
 
-    SetEnv VWF_MAIL_KEYFILE /home/site/dkim/202611.private
-    SetEnv VWF_MAIL_SELECTOR 202611
+    SetEnv DKIM_KEYFILE /home/site/dkim/202611.private
+    SetEnv DKIM_SELECTOR 202611
 
 Pattern 4: in a test, send to a script that saves the message instead of
 to sendmail.
 
-    local $ENV{'VWF_MAIL_SENDMAIL'} = '/tmp/capture-script';
+    local $ENV{'DKIM_SENDMAIL'} = '/tmp/capture-script';
     $log->error("Test message\n");
 
 =head1 DESCRIPTION
 
 Sends a log message the way L<Log::Dispatch::Email::Sendmail> does, but signs
-it with L<Web::VWF::Mail> first, so the message carries a C<DKIM-Signature>
+it with L<Mail::Send::DKIM> first, so the message carries a C<DKIM-Signature>
 for the domain it claims to come from.  An unsigned C<webmaster@> message and
 a forgery are indistinguishable in a DMARC report; signing is what tells them
 apart, and what lets the copy a mailing list forwards still authenticate.
@@ -136,15 +136,15 @@ empty variable counts as unset.
 
 =over 4
 
-=item C<VWF_MAIL_DOMAIN> - the signing domain, instead of the one in C<from>
+=item C<DKIM_DOMAIN> - the signing domain, instead of the one in C<from>
 
-=item C<VWF_MAIL_SELECTOR> - the DKIM selector, instead of the key's file name
+=item C<DKIM_SELECTOR> - the DKIM selector, instead of the key's file name
 
-=item C<VWF_MAIL_KEYFILE> - the private key to sign with
+=item C<DKIM_KEYFILE> - the private key to sign with
 
-=item C<VWF_MAIL_KEYDIR> - where to look for C<*.private> (default C<~/dkim>)
+=item C<DKIM_KEYDIR> - where to look for C<*.private> (default C<~/dkim>)
 
-=item C<VWF_MAIL_SENDMAIL> - the sendmail to hand the message to
+=item C<DKIM_SENDMAIL> - the sendmail to hand the message to
 
 =back
 
@@ -169,7 +169,7 @@ L</CONFIGURATION> instead.
 
 =item *
 
-B<An empty environment variable means "not set".>  C<VWF_MAIL_DOMAIN=""> does
+B<An empty environment variable means "not set".>  C<DKIM_DOMAIN=""> does
 not turn anything off.
 
 =item *
@@ -281,11 +281,11 @@ by warning, not by the return value, because Log::Dispatch ignores it.
 =head3 Side Effects
 
 Runs sendmail(1).  While it runs, STDERR is pointed at the null device
-because DreamHost's sendmail writes an IPv6 warning there that would corrupt
+because some sendmail implementations write a warning there that would corrupt
 CGI output.
 
 A missing or unreadable key is not an error: it warns and sends the message
-unsigned, which is what C<Web::VWF::Mail> does for a signing problem of any
+unsigned, which is what L<Mail::Send::DKIM> does for a signing problem of any
 kind.  A line break in the subject, From or To is replaced by a space, so a
 logged value cannot add a header of its own.
 
@@ -307,8 +307,8 @@ address is used as the sendmail envelope sender and as the signing domain.
         outputs => [ [
             'Email::DKIM',
             'min_level' => 'error',
-            'from' => 'webmaster@bandsman.co.uk',
-            'to' => ['njh@bandsman.co.uk'],
+            'from' => 'webmaster@example.com',
+            'to' => ['admin@example.com'],
             'subject' => 'Error in shop/index.fcgi',
         ] ],
     );
@@ -317,8 +317,8 @@ address is used as the sendmail envelope sender and as the signing domain.
     $log->error("Something went wrong\n");
 
     # Test a different key and a capture script instead of sendmail
-    local $ENV{'VWF_MAIL_KEYFILE'} = '/tmp/keys/202611.private';
-    local $ENV{'VWF_MAIL_SENDMAIL'} = '/tmp/capture';
+    local $ENV{'DKIM_KEYFILE'} = '/tmp/keys/202611.private';
+    local $ENV{'DKIM_SENDMAIL'} = '/tmp/capture';
 
 =head3 API SPECIFICATION
 
@@ -342,12 +342,12 @@ Unknown keys are ignored.
 
 No readable key, domain or selector could be found.  The message is sent
 without a signature.  Put a C<SELECTOR.private> key in C<~/dkim>, or set
-C<VWF_MAIL_KEYFILE> or C<VWF_MAIL_KEYDIR>.
+C<DKIM_KEYFILE> or C<DKIM_KEYDIR>.
 
 =item C<DKIM: sendmail failed for SENDER> (warning)
 
 sendmail(1) could not be run or exited with a failure.  Check
-C<VWF_MAIL_SENDMAIL> and the mail queue.
+C<DKIM_SENDMAIL> and the mail queue.
 
 =item C<To whom should I be sending this e-mail?> (STDERR)
 
@@ -606,9 +606,9 @@ sub _from_environment :Private
 }
 
 # Purpose: find the private key to sign with.
-# Entry: none; consults VWF_MAIL_KEYFILE, VWF_MAIL_KEYDIR and the home
+# Entry: none; consults DKIM_KEYFILE, DKIM_KEYDIR and the home
 #	directory.
-# Exit: the path of VWF_MAIL_KEYFILE, or else of the highest-named
+# Exit: the path of DKIM_KEYFILE, or else of the highest-named
 #	*.private in the key directory, or undef if there is none.
 # Side effects: reads a directory.  A directory listing is used instead of
 #	glob() because glob() splits on spaces and expands '[' and '*'.
@@ -669,7 +669,7 @@ sub _signing_key :Private
 # Purpose: run a piece of code with STDERR discarded.
 # Entry: $code is a code reference.
 # Exit: whatever $code returns (in scalar context).
-# Side effects: DreamHost's sendmail writes an IPv6 warning to STDERR that
+# Side effects: some sendmail implementations write a warning to STDERR that
 #	breaks CGI output, so STDERR is the null device while $code runs and is
 #	restored after, as Log::Dispatch::Email::Sendmail does.  If the null
 #	device cannot be opened $code runs anyway: a noisy message beats a lost one.
@@ -700,32 +700,75 @@ sub _deliver :Private
 	my $key = $self->_signing_key($sender);
 
 	# Unsigned mail is still sent, but whoever reads the log should hear of it
-	if(!(defined($key->{'domain'}) && defined($key->{'selector'}) && defined($key->{'keyfile'}) && -r $key->{'keyfile'})) {
+	my $signed = (defined($key->{'domain'}) && defined($key->{'selector'}) && defined($key->{'keyfile'}) && -r $key->{'keyfile'});
+	if(!$signed) {
 		$self->_warn_user('no_key', { 'domain' => $key->{'domain'} // $self->i18n('unknown_domain') });
 	}
 
-	require Web::VWF::Mail;
+	require Mail::Send::DKIM;
 
-	my $mail = Web::VWF::Mail->new(
-		# The envelope sender is the bare address: a display name would be
-		# refused as an invalid sendmail -f argument
-		'from' => $sender->address(),
-		%{$key},
+	my $dkim = Mail::Send::DKIM->new(
+		# Which messages to sign is decided by the From: domain; the signature
+		# is for the signing domain, which DKIM_DOMAIN may change
+		'domains' => [ $sender->host() ],
+		'signing_domain' => $key->{'domain'},
+		'selector' => $key->{'selector'},
+		'keyfile' => $key->{'keyfile'},
 		'sendmail' => $self->_from_environment('sendmail') // $DEFAULT_SENDMAIL,
 	);
 
-	my $headers = join("\n",
+	my $text = join("\n",
 		'To: ' . $self->_one_line(join(',', @{$self->{'to'}})),
 		'From: ' . $self->_one_line($self->{'from'}),
 		'Subject: ' . $self->_one_line($self->{'subject'}),
-	);
-	$mail->print($headers, "\n\n", $message);
+	) . "\n\n" . $message;
 
-	my $sent = $self->_without_stderr(sub { $mail->close() });
-	$self->_warn_user('send_failed', { 'sender' => $sender->address() }) unless($sent);
+	# sign() returns undef when it cannot sign, and the message goes unsigned
+	if($signed) {
+		my $signed_text = $dkim->sign($text);
+		$text = $signed_text if(defined($signed_text));
+	}
+
+	# The envelope sender is the bare address: a display name would be
+	# refused as an invalid sendmail -f argument
+	my $status = $self->_without_stderr(sub { $dkim->send($text, '-t', '-f', $sender->address()) });
+	$self->_warn_user('send_failed', { 'sender' => $sender->address() }) if($status);
 
 	return $self;
 }
+
+=head1 EXAMPLES
+
+A complete log4perl configuration file, which logs everything to a file and
+emails anything of level C<WARN> or above.  Save it as, say,
+F<myapp.l4pconf> and load it with C<Log::Log4perl-E<gt>init('myapp.l4pconf')>.
+
+    log4perl.logger.myapp=TRACE, A1, A2
+
+    log4perl.appender.A1=Log::Dispatch::File
+    log4perl.appender.A1.Filter=RangeAll
+    log4perl.appender.A1.filename=/tmp/myapp.log
+    log4perl.appender.A1.mode=append
+    log4perl.appender.A1.layout=Log::Log4perl::Layout::PatternLayout
+    log4perl.appender.A1.layout.ConversionPattern=%d %p> %F{1}:%L %M - %m%n
+
+    log4perl.appender.A2=Log::Dispatch::Email::DKIM
+    log4perl.appender.A2.Filter=RangeError
+    log4perl.appender.A2.from=webmaster@example.com
+    log4perl.appender.A2.to=admin@example.com
+    log4perl.appender.A2.subject=Error in myapp
+    log4perl.appender.A2.layout=Log::Log4perl::Layout::PatternLayout
+    log4perl.appender.A2.layout.ConversionPattern=%d %p> %F{1}:%L %M - %m%n
+
+    log4perl.filter.RangeAll=Log::Log4perl::Filter::LevelRange
+    log4perl.filter.RangeAll.LevelMin=TRACE
+    log4perl.filter.RangeAll.LevelMax=FATAL
+    log4perl.filter.RangeAll.AcceptOnMatch=true
+
+    log4perl.filter.RangeError=Log::Log4perl::Filter::LevelRange
+    log4perl.filter.RangeError.LevelMin=WARN
+    log4perl.filter.RangeError.LevelMax=FATAL
+    log4perl.filter.RangeError.AcceptOnMatch=true
 
 =head1 LIMITATIONS
 
@@ -760,7 +803,7 @@ queued for retry, and the only record is the warning.
 =item *
 
 A C<from> with no valid address, or a missing recipient, loses the message.
-This used to be a fatal error from L<Web::VWF::Mail>, which a logger should
+This used to be a fatal error from the underlying mailer, which a logger should
 not raise.
 
 =item *

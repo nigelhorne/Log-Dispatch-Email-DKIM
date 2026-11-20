@@ -29,13 +29,9 @@ WriteMakefile(
 		'Readonly' => 0,
 		'Sub::Private' => '0.09',	# 0.09 for the enforce mode
 		'Sub::Protected' => 0,
-		# Web::VWF only recommends Mail::DKIM, because a site with no key must
-		# still send its contact form, but this appender exists to sign: without
-		# it every message goes out unsigned
-		'Mail::DKIM' => 0,
-		'Web::VWF' => '0.003',
-	},
-	TEST_REQUIRES => {
+		# Mail::Send::DKIM brings Mail::DKIM, which does the signing
+		'Mail::Send::DKIM' => '0.004.0',
+	}, TEST_REQUIRES => {
 		'Test::Memory::Cycle' => 0,
 		'Test::Mockingbird' => 0,
 		'Test::More' => 0,

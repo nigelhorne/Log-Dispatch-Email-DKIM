@@ -102,7 +102,7 @@ chmod(0700, $sendmail) or die $!;
 sub sent_by {
 	my ($settings, $env) = @_;
 	local @ENV{keys %{$env}} = values %{$env};
-	local $ENV{'VWF_MAIL_SENDMAIL'} = $sendmail;
+	local $ENV{'DKIM_SENDMAIL'} = $sendmail;
 	local $ENV{'CAPFILE'} = File::Spec->catfile(tempdir(CLEANUP => 1), 'message');
 	my @warnings;
 	{
@@ -120,7 +120,7 @@ sub sent_by {
 }
 
 my $empty = tempdir(CLEANUP => 1);
-my %nokey = ('VWF_MAIL_KEYDIR' => $empty);
+my %nokey = ('DKIM_KEYDIR' => $empty);
 
 subtest 'header injection' => sub {
 	my ($sent) = sent_by({
@@ -155,23 +155,23 @@ subtest 'a key directory glob() would mangle' => sub {
 	make_path($dir);
 	open(my $out, '>', File::Spec->catfile($dir, '202611.private')) or die $!;
 	close($out);
-	local $ENV{'VWF_MAIL_KEYDIR'} = $dir;
+	local $ENV{'DKIM_KEYDIR'} = $dir;
 	is($log->test_private('_find_key_file'), File::Spec->catfile($dir, '202611.private'), 'the key is found');
 };
 
 subtest 'no HOME in the environment' => sub {
 	local $ENV{'HOME'};
 	delete $ENV{'HOME'};
-	delete local $ENV{'VWF_MAIL_KEYDIR'};
-	delete local $ENV{'VWF_MAIL_KEYFILE'};
+	delete local $ENV{'DKIM_KEYDIR'};
+	delete local $ENV{'DKIM_KEYFILE'};
 	my $found = eval { $log->test_private('_find_key_file'); 1 };
 	ok($found, 'looking for a key does not die') or diag($@);
 };
 
 subtest 'chaining' => sub {
-	local $ENV{'VWF_MAIL_SENDMAIL'} = $sendmail;
+	local $ENV{'DKIM_SENDMAIL'} = $sendmail;
 	local $ENV{'CAPFILE'} = File::Spec->devnull();
-	local $ENV{'VWF_MAIL_KEYDIR'} = $empty;
+	local $ENV{'DKIM_KEYDIR'} = $empty;
 	local $SIG{'__WARN__'} = sub { };
 	is($log->send_email('message' => "x\n"), $log, 'send_email returns $self');
 	is($log->send_email({ 'message' => "x\n", 'level' => 'error' }), $log, 'a hash reference with extra keys is accepted');
