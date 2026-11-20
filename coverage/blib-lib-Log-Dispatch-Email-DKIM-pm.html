@@ -26,24 +26,24 @@ https://pjcj.net
 <table>
 <tr><th>line</th><th>stmt</th><th>bran</th><th>cond</th><th>sub</th><th>time</th><th>code</th></tr>
 <tr><td class="h">1</td><td></td><td></td><td></td><td></td><td></td><td class="s">package Log::Dispatch::Email::DKIM;</td></tr>
-<tr><td class="h">2</td><td colspan="6"></td></tr><tr><td class="h">3</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L3">10</a></div></td><td><div>224702</div><div>7</div><div>54</div></td><td class="s">use strict;</td></tr>
-<tr><td class="h">4</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L4">10</a></div></td><td><div>9</div><div>7</div><div>135</div></td><td class="s">use warnings;</td></tr>
-<tr><td class="h">5</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L5">10</a></div></td><td><div>759</div><div>37590</div><div>15</div></td><td class="s">use autodie qw(:all);</td></tr>
-<tr><td class="h">6</td><td colspan="6"></td></tr><tr><td class="h">7</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L7">10</a></div></td><td><div>51114</div><div>10</div><div>1175</div></td><td class="s">use base &#39;Log::Dispatch::Email&#39;;</td></tr>
-<tr><td class="h">8</td><td colspan="6"></td></tr><tr><td class="h">9</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L9">10</a></div></td><td><div>670632</div><div>2</div><div>169</div></td><td class="s">use Carp qw(carp croak);</td></tr>
-<tr><td class="h">10</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L10">10</a></div></td><td><div>1433</div><div>6823</div><div>148</div></td><td class="s">use Email::Address::XS;</td></tr>
-<tr><td class="h">11</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L11">10</a></div></td><td><div>19</div><div>10</div><div>174</div></td><td class="s">use File::Basename qw(basename);</td></tr>
-<tr><td class="h">12</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L12">10</a></div></td><td><div>1227</div><div>16486</div><div>165</div></td><td class="s">use File::HomeDir;</td></tr>
-<tr><td class="h">13</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L13">10</a></div></td><td><div>17</div><div>9</div><div>60</div></td><td class="s">use File::Spec;</td></tr>
-<tr><td class="h">14</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L14">10</a></div></td><td><div>906</div><div>29199</div><div>180</div></td><td class="s">use Params::Get qw(get_params);</td></tr>
-<tr><td class="h">15</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L15">10</a></div></td><td><div>2324</div><div>85717</div><div>224</div></td><td class="s">use Params::Validate::Strict qw(validate_strict);</td></tr>
-<tr><td class="h">16</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L16">10</a></div></td><td><div>23</div><div>6</div><div>113</div></td><td class="s">use Readonly;</td></tr>
-<tr><td class="h">17</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L17">10</a></div></td><td><div>12</div><div>2</div><div>103</div></td><td class="s">use Scalar::Util qw(looks_like_number);</td></tr>
+<tr><td class="h">2</td><td colspan="6"></td></tr><tr><td class="h">3</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L3">10</a></div></td><td><div>213436</div><div>18</div><div>45</div></td><td class="s">use strict;</td></tr>
+<tr><td class="h">4</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L4">10</a></div></td><td><div>8</div><div>8</div><div>110</div></td><td class="s">use warnings;</td></tr>
+<tr><td class="h">5</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L5">10</a></div></td><td><div>1051</div><div>34788</div><div>12</div></td><td class="s">use autodie qw(:all);</td></tr>
+<tr><td class="h">6</td><td colspan="6"></td></tr><tr><td class="h">7</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L7">10</a></div></td><td><div>44735</div><div>8</div><div>1426</div></td><td class="s">use base &#39;Log::Dispatch::Email&#39;;</td></tr>
+<tr><td class="h">8</td><td colspan="6"></td></tr><tr><td class="h">9</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L9">10</a></div></td><td><div>606771</div><div>9</div><div>133</div></td><td class="s">use Carp qw(carp croak);</td></tr>
+<tr><td class="h">10</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L10">10</a></div></td><td><div>1455</div><div>6653</div><div>155</div></td><td class="s">use Email::Address::XS;</td></tr>
+<tr><td class="h">11</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L11">10</a></div></td><td><div>21</div><div>4</div><div>179</div></td><td class="s">use File::Basename qw(basename);</td></tr>
+<tr><td class="h">12</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L12">10</a></div></td><td><div>1399</div><div>16425</div><div>125</div></td><td class="s">use File::HomeDir;</td></tr>
+<tr><td class="h">13</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L13">10</a></div></td><td><div>13</div><div>7</div><div>47</div></td><td class="s">use File::Spec;</td></tr>
+<tr><td class="h">14</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L14">10</a></div></td><td><div>1079</div><div>26129</div><div>142</div></td><td class="s">use Params::Get qw(get_params);</td></tr>
+<tr><td class="h">15</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L15">10</a></div></td><td><div>2358</div><div>77740</div><div>180</div></td><td class="s">use Params::Validate::Strict qw(validate_strict);</td></tr>
+<tr><td class="h">16</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L16">10</a></div></td><td><div>14</div><div>7</div><div>98</div></td><td class="s">use Readonly;</td></tr>
+<tr><td class="h">17</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L17">10</a></div></td><td><div>7</div><div>5</div><div>84</div></td><td class="s">use Scalar::Util qw(looks_like_number);</td></tr>
 <tr><td class="h">18</td><td colspan="6"></td></tr><tr><td class="h">19</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Private helpers are really private (a call from outside this package croaks,</td></tr>
 <tr><td class="h">20</td><td></td><td></td><td></td><td></td><td></td><td class="s"># which also works for $self-&gt;_helper() dispatch); the one protected method,</td></tr>
 <tr><td class="h">21</td><td></td><td></td><td></td><td></td><td></td><td class="s"># i18n(), may be called by a subclass that wants to reword the messages.</td></tr>
-<tr><td class="h">22</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L22">10</a></div></td><td><div>1530</div><div>26439</div><div>24</div></td><td class="s">use Sub::Private { &#39;mode&#39; =&gt; &#39;enforce&#39; };</td></tr>
-<tr><td class="h">23</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L23">10</a></div></td><td><div>2330</div><div>7083</div><div>17</div></td><td class="s">use Sub::Protected;</td></tr>
+<tr><td class="h">22</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L22">10</a></div></td><td><div>1575</div><div>24884</div><div>19</div></td><td class="s">use Sub::Private { &#39;mode&#39; =&gt; &#39;enforce&#39; };</td></tr>
+<tr><td class="h">23</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L23">10</a></div></td><td><div>2109</div><div>5885</div><div>16</div></td><td class="s">use Sub::Protected;</td></tr>
 <tr><td class="h">24</td><td colspan="6"></td></tr><tr><td class="h">25</td><td></td><td></td><td></td><td></td><td></td><td class="s">=encoding utf8</td></tr>
 <tr><td class="h">26</td><td colspan="6"></td></tr><tr><td class="h">27 - 35</td><td colspan="5"></td><td class="s"><pre>=head1 NAME
 
@@ -54,7 +54,7 @@ Log::Dispatch::Email::DKIM - Log::Dispatch appender that DKIM-signs its mail
 Version 0.001.0
 
 =cut</pre></td></tr>
-<tr><td class="h">36</td><td colspan="6"></td></tr><tr><td class="h">37</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L37">10</a></div></td><td><div>687</div><div>5</div><div>22</div></td><td class="s">use version; our $VERSION = version-&gt;declare(&#39;0.001.0&#39;);</td></tr>
+<tr><td class="h">36</td><td colspan="6"></td></tr><tr><td class="h">37</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L37">10</a></div></td><td><div>534</div><div>6</div><div>13</div></td><td class="s">use version; our $VERSION = version-&gt;declare(&#39;0.001.0&#39;);</td></tr>
 <tr><td class="h">38</td><td colspan="6"></td></tr><tr><td class="h">39</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Everything that was once a literal in the code lives here, so that it is</td></tr>
 <tr><td class="h">40</td><td></td><td></td><td></td><td></td><td></td><td class="s"># named once and can be changed (or, for the messages, translated) in one place.</td></tr>
 <tr><td class="h">41</td><td></td><td></td><td></td><td></td><td></td><td class="s">Readonly my $DEFAULT_SENDMAIL =&gt; &#39;/usr/sbin/sendmail&#39;;</td></tr>
@@ -91,7 +91,7 @@ Version 0.001.0
 <tr><td class="h">75</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;no_message&#39; =&gt; [&#39;message is required&#39;],</td></tr>
 <tr><td class="h">76</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;bad_arguments&#39; =&gt; [&#39;DKIM: invalid arguments to %s: %s&#39;, &#39;routine&#39;, &#39;reason&#39;],</td></tr>
 <tr><td class="h">77</td><td></td><td></td><td></td><td></td><td></td><td class="s">);</td></tr>
-<tr><td class="h">78</td><td colspan="6"></td></tr><tr><td class="h">79 - 381</td><td colspan="5"></td><td class="s"><pre>=head1 SYNOPSIS
+<tr><td class="h">78</td><td colspan="6"></td></tr><tr><td class="h">79 - 390</td><td colspan="5"></td><td class="s"><pre>=head1 SYNOPSIS
 
 Pattern 1: from a log4perl configuration file.
 
@@ -151,7 +151,7 @@ empty variable counts as unset.
 
 =over 4
 
-=item C&lt;DKIM_DOMAIN&gt; - the signing domain, instead of the one in C&lt;from&gt;
+=item C&lt;DKIM_DOMAIN&gt; - the domain put in the signature (its C&lt;d=&gt; tag), instead of the one in C&lt;from&gt;
 
 =item C&lt;DKIM_SELECTOR&gt; - the DKIM selector, instead of the key&#39;s file name
 
@@ -159,9 +159,16 @@ empty variable counts as unset.
 
 =item C&lt;DKIM_KEYDIR&gt; - where to look for C&lt;*.private&gt; (default C&lt;~/dkim&gt;)
 
-=item C&lt;DKIM_SENDMAIL&gt; - the sendmail to hand the message to
+=item C&lt;DKIM_SENDMAIL&gt; - the sendmail to hand the message to (then C&lt;SENDMAIL&gt;)
 
 =back
+
+C&lt;DKIM_DOMAIN&gt; changes only the domain in the signature.&nbsp;&nbsp;Whether a message is
+signed at all is still decided by the domain in C&lt;from&gt;, so a message from an
+address this host has no key for is sent unsigned whatever C&lt;DKIM_DOMAIN&gt; says.
+C&lt;DKIM_SENDMAIL&gt; wins over C&lt;SENDMAIL&gt;, the variable L&lt;Mail::Send::DKIM&gt; and
+its C&lt;mail-dkim&gt; programme read, so a host that sets only C&lt;SENDMAIL&gt; gets the
+same sendmail from both.&nbsp;&nbsp;With neither set, F&lt;/usr/sbin/sendmail&gt; is used.
 
 The home directory comes from L&lt;File::HomeDir&gt;, so it is found even when the
 process (a CGI script, say) has no C&lt;HOME&gt; in its environment.
@@ -361,8 +368,10 @@ C&lt;DKIM_KEYFILE&gt; or C&lt;DKIM_KEYDIR&gt;.
 
 =item C&lt;DKIM: sendmail failed for SENDER&gt; (warning)
 
-sendmail(1) could not be run or exited with a failure.&nbsp;&nbsp;Check
-C&lt;DKIM_SENDMAIL&gt; and the mail queue.
+sendmail(1) could not be run or exited with a failure (a non-zero exit
+status).&nbsp;&nbsp;Check C&lt;DKIM_SENDMAIL&gt; and the mail queue.&nbsp;&nbsp;When sendmail could not
+be started at all, L&lt;Mail::Send::DKIM&gt; also warns C&lt;cannot run PROGRAM: REASON&gt;,
+where REASON is the operating system&#39;s own error text, in the current locale.
 
 =item C&lt;To whom should I be sending this e-mail?&gt; (STDERR)
 
@@ -394,24 +403,24 @@ C&lt;message is required&gt;.
 &nbsp;&nbsp;&nbsp;&nbsp;return self
 
 =cut</pre></td></tr>
-<tr><td class="h">382</td><td colspan="6"></td></tr><tr><td class="h">383</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub send_email</td></tr>
-<tr><td class="h">384</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
-<tr><td class="h">385</td><td><div class="c3">37</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L385">37</a></div></td><td><div>308295</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $self = shift;</td></tr>
-<tr><td class="h">386</td><td colspan="6"></td></tr><tr><td class="h">387</td><td><div class="c3">37</div></td><td></td><td></td><td></td><td><div>84</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $args = $self-&gt;_validated_arguments(&#39;send_email&#39;, \@_);</td></tr>
-<tr><td class="h">388</td><td><div class="c3">33</div></td><td></td><td></td><td></td><td><div>58</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $sender = $self-&gt;_parse_address($self-&gt;{&#39;from&#39;});</td></tr>
-<tr><td class="h">389</td><td colspan="6"></td></tr><tr><td class="h">390</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Neither case can be reported with carp: it could come back here.&nbsp;&nbsp;An</td></tr>
-<tr><td class="h">391</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# empty list is as good as no recipient: sendmail -t would be given &quot;To: &quot;.</td></tr>
-<tr><td class="h">392</td><td><div class="c3">32</div></td><td></td><td></td><td></td><td><div>488</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $recipients = $self-&gt;{&#39;to&#39;};</td></tr>
-<tr><td class="h">393</td><td><div class="c3">32</div><div class="c3">29</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--branch.html#L393">100</a></div><div class="c3" title="T/F"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--branch.html#L393">100</a></div></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--condition.html#L393">100</a></div></td><td></td><td><div>40</div><div>42</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(ref($recipients) ne &#39;ARRAY&#39; || !@{$recipients}) {</td></tr>
-<tr><td class="h">394</td><td><div class="c3">5</div></td><td></td><td></td><td></td><td><div>4</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$self-&gt;_say_to_stderr(&#39;no_recipient&#39;);</td></tr>
-<tr><td class="h">395</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} elsif(!$sender) {</td></tr>
-<tr><td class="h">396</td><td><div class="c3">2</div></td><td></td><td></td><td></td><td><div>6</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$self-&gt;_say_to_stderr(&#39;no_sender&#39;);</td></tr>
-<tr><td class="h">397</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {</td></tr>
-<tr><td class="h">398</td><td><div class="c3">25</div></td><td></td><td></td><td></td><td><div>119</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$self-&gt;_deliver($sender, $args-&gt;{&#39;message&#39;});</td></tr>
-<tr><td class="h">399</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">400</td><td colspan="6"></td></tr><tr><td class="h">401</td><td><div class="c3">31</div></td><td></td><td></td><td></td><td><div>421</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $self;</td></tr>
-<tr><td class="h">402</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
-<tr><td class="h">403</td><td colspan="6"></td></tr><tr><td class="h">404 - 465</td><td colspan="5"></td><td class="s"><pre>=head2 i18n
+<tr><td class="h">391</td><td colspan="6"></td></tr><tr><td class="h">392</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub send_email</td></tr>
+<tr><td class="h">393</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
+<tr><td class="h">394</td><td><div class="c3">37</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L394">37</a></div></td><td><div>285807</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $self = shift;</td></tr>
+<tr><td class="h">395</td><td colspan="6"></td></tr><tr><td class="h">396</td><td><div class="c3">37</div></td><td></td><td></td><td></td><td><div>67</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $args = $self-&gt;_validated_arguments(&#39;send_email&#39;, \@_);</td></tr>
+<tr><td class="h">397</td><td><div class="c3">33</div></td><td></td><td></td><td></td><td><div>74</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $sender = $self-&gt;_parse_address($self-&gt;{&#39;from&#39;});</td></tr>
+<tr><td class="h">398</td><td colspan="6"></td></tr><tr><td class="h">399</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Neither case can be reported with carp: it could come back here.&nbsp;&nbsp;An</td></tr>
+<tr><td class="h">400</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# empty list is as good as no recipient: sendmail -t would be given &quot;To: &quot;.</td></tr>
+<tr><td class="h">401</td><td><div class="c3">32</div></td><td></td><td></td><td></td><td><div>521</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $recipients = $self-&gt;{&#39;to&#39;};</td></tr>
+<tr><td class="h">402</td><td><div class="c3">32</div><div class="c3">29</div></td><td><div class="c3" title="T/F"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--branch.html#L402">100</a></div><div class="c3" title="T/F"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--branch.html#L402">100</a></div></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--condition.html#L402">100</a></div></td><td></td><td><div>45</div><div>36</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(ref($recipients) ne &#39;ARRAY&#39; || !@{$recipients}) {</td></tr>
+<tr><td class="h">403</td><td><div class="c3">5</div></td><td></td><td></td><td></td><td><div>4</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$self-&gt;_say_to_stderr(&#39;no_recipient&#39;);</td></tr>
+<tr><td class="h">404</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} elsif(!$sender) {</td></tr>
+<tr><td class="h">405</td><td><div class="c3">2</div></td><td></td><td></td><td></td><td><div>7</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$self-&gt;_say_to_stderr(&#39;no_sender&#39;);</td></tr>
+<tr><td class="h">406</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {</td></tr>
+<tr><td class="h">407</td><td><div class="c3">25</div></td><td></td><td></td><td></td><td><div>136</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$self-&gt;_deliver($sender, $args-&gt;{&#39;message&#39;});</td></tr>
+<tr><td class="h">408</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">409</td><td colspan="6"></td></tr><tr><td class="h">410</td><td><div class="c3">31</div></td><td></td><td></td><td></td><td><div>472</div></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $self;</td></tr>
+<tr><td class="h">411</td><td></td><td></td><td></td><td></td><td></td><td class="s">}</td></tr>
+<tr><td class="h">412</td><td colspan="6"></td></tr><tr><td class="h">413 - 474</td><td colspan="5"></td><td class="s"><pre>=head2 i18n
 
 =head3 Purpose
 
@@ -473,233 +482,242 @@ None of its own.&nbsp;&nbsp;An unknown key is returned as the text.
 &nbsp;&nbsp;&nbsp;&nbsp;format the entry with its named arguments
 
 =cut</pre></td></tr>
-<tr><td class="h">466</td><td colspan="6"></td></tr><tr><td class="h">467</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub i18n :Protected</td></tr>
-<tr><td class="h">468</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
-<tr><td class="h">469</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $key, $args) = @_;</td></tr>
-<tr><td class="h">470</td><td colspan="6"></td></tr><tr><td class="h">471</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$args ||= {};</td></tr>
-<tr><td class="h">472</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $entry = defined($MESSAGES{$key}) ? $self-&gt;_choose_variant($MESSAGES{$key}, $args) : undef;</td></tr>
-<tr><td class="h">473</td><td colspan="6"></td></tr><tr><td class="h">474</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# No such key, or a message with no usable variant: show the key, so the</td></tr>
-<tr><td class="h">475</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# gap is visible rather than fatal</td></tr>
-<tr><td class="h">476</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return defined($entry) ? sprintf($entry-&gt;[0], map { $args-&gt;{$_} // q{} } @{$entry}[1 .. $#{$entry}]) : $key;</td></tr>
-<tr><td class="h">477</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L477">10</a></div></td><td><div>1677</div><div>9</div><div>88</div></td><td class="s">}</td></tr>
-<tr><td class="h">478</td><td colspan="6"></td></tr><tr><td class="h">479</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose: pick the wording for a message that has variants.</td></tr>
-<tr><td class="h">480</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry: $entry is an array reference (returned as it is) or a hash reference</td></tr>
-<tr><td class="h">481</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of variants; $args is a hash reference.</td></tr>
-<tr><td class="h">482</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit: an array reference [ $format, @names ], or undef if a hash of variants</td></tr>
-<tr><td class="h">483</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;has none that applies.&nbsp;&nbsp;The variant named by $args-&gt;{gender} wins, then</td></tr>
-<tr><td class="h">484</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;one&#39; when $args-&gt;{count} is the number 1, then &#39;other&#39;.&nbsp;&nbsp;A count that is</td></tr>
-<tr><td class="h">485</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;not a number is not 1.</td></tr>
-<tr><td class="h">486</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects: none.</td></tr>
-<tr><td class="h">487</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _choose_variant :Private</td></tr>
-<tr><td class="h">488</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
-<tr><td class="h">489</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $entry, $args) = @_;</td></tr>
-<tr><td class="h">490</td><td colspan="6"></td></tr><tr><td class="h">491</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(ref($entry) eq &#39;HASH&#39;) {</td></tr>
-<tr><td class="h">492</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $count = $args-&gt;{&#39;count&#39;};</td></tr>
-<tr><td class="h">493</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $is_one = defined($count) &amp;&amp; looks_like_number($count) &amp;&amp; $count == 1;</td></tr>
-<tr><td class="h">494</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my @wanted = grep { defined } ($args-&gt;{&#39;gender&#39;}, $is_one ? &#39;one&#39; : undef, &#39;other&#39;);</td></tr>
-<tr><td class="h">495</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($found) = grep { exists $entry-&gt;{$_} } @wanted;</td></tr>
-<tr><td class="h">496</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$entry = defined($found) ? $entry-&gt;{$found} : undef;</td></tr>
-<tr><td class="h">497</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">498</td><td colspan="6"></td></tr><tr><td class="h">499</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $entry;</td></tr>
-<tr><td class="h">500</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L500">10</a></div></td><td><div>2191</div><div>4</div><div>47</div></td><td class="s">}</td></tr>
-<tr><td class="h">501</td><td colspan="6"></td></tr><tr><td class="h">502</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose: raise a warning in the user&#39;s words.</td></tr>
-<tr><td class="h">503</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry: $key and $args as for i18n().</td></tr>
-<tr><td class="h">504</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit: $self, for chaining.</td></tr>
-<tr><td class="h">505</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects: a carp(), reported from the caller&#39;s point of view.</td></tr>
-<tr><td class="h">506</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _warn_user :Private</td></tr>
-<tr><td class="h">507</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
-<tr><td class="h">508</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $key, $args) = @_;</td></tr>
-<tr><td class="h">509</td><td colspan="6"></td></tr><tr><td class="h">510</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;carp($self-&gt;i18n($key, $args));</td></tr>
-<tr><td class="h">511</td><td colspan="6"></td></tr><tr><td class="h">512</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $self;</td></tr>
-<tr><td class="h">513</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L513">10</a></div></td><td><div>1891</div><div>6</div><div>38</div></td><td class="s">}</td></tr>
-<tr><td class="h">514</td><td colspan="6"></td></tr><tr><td class="h">515</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose: report a problem that must not go through the warn() machinery.</td></tr>
-<tr><td class="h">516</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry: $key and $args as for i18n().</td></tr>
-<tr><td class="h">517</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit: $self, for chaining.</td></tr>
-<tr><td class="h">518</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects: a line on STDERR.&nbsp;&nbsp;Not a warning, because a warn handler may</td></tr>
-<tr><td class="h">519</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log it, which would send it back through this appender.</td></tr>
-<tr><td class="h">520</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _say_to_stderr :Private</td></tr>
-<tr><td class="h">521</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
-<tr><td class="h">522</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $key, $args) = @_;</td></tr>
-<tr><td class="h">523</td><td colspan="6"></td></tr><tr><td class="h">524</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print STDERR $self-&gt;i18n($key, $args), &quot;\n&quot;;</td></tr>
-<tr><td class="h">525</td><td colspan="6"></td></tr><tr><td class="h">526</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $self;</td></tr>
-<tr><td class="h">527</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L527">10</a></div></td><td><div>1593</div><div>6</div><div>35</div></td><td class="s">}</td></tr>
-<tr><td class="h">528</td><td colspan="6"></td></tr><tr><td class="h">529</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose: normalise and check the arguments of a public routine.</td></tr>
-<tr><td class="h">530</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry: $routine is its name (for the message); $arguments is an array</td></tr>
-<tr><td class="h">531</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reference to its @_, in any form Params::Get understands.</td></tr>
-<tr><td class="h">532</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit: a hash reference of the validated arguments.&nbsp;&nbsp;Croaks, in the user&#39;s</td></tr>
-<tr><td class="h">533</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;words, if they do not match $SEND_EMAIL_SCHEMA.</td></tr>
-<tr><td class="h">534</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects: none.</td></tr>
-<tr><td class="h">535</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _validated_arguments :Private</td></tr>
-<tr><td class="h">536</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
-<tr><td class="h">537</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $routine, $arguments) = @_;</td></tr>
-<tr><td class="h">538</td><td colspan="6"></td></tr><tr><td class="h">539</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $validated = eval {</td></tr>
-<tr><td class="h">540</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;validate_strict(</td></tr>
-<tr><td class="h">541</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;schema&#39; =&gt; $SEND_EMAIL_SCHEMA,</td></tr>
-<tr><td class="h">542</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;input&#39; =&gt; get_params(undef, $arguments),</td></tr>
-<tr><td class="h">543</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;unknown_parameter_handler&#39; =&gt; &#39;ignore&#39;,</td></tr>
-<tr><td class="h">544</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</td></tr>
-<tr><td class="h">545</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</td></tr>
-<tr><td class="h">546</td><td colspan="6"></td></tr><tr><td class="h">547</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# validate_strict() lets an undef through a required parameter, by design,</td></tr>
-<tr><td class="h">548</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# so a missing message is checked for as well</td></tr>
-<tr><td class="h">549</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $reason = $@ || (defined($validated-&gt;{&#39;message&#39;}) ? q{} : $self-&gt;i18n(&#39;no_message&#39;));</td></tr>
-<tr><td class="h">550</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(length($reason)) {</td></tr>
-<tr><td class="h">551</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# The reason ends in a newline when it came from a die(); drop it so the</td></tr>
-<tr><td class="h">552</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# message stays on one line, with croak&#39;s own location after it</td></tr>
-<tr><td class="h">553</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;chomp($reason);</td></tr>
-<tr><td class="h">554</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;croak($self-&gt;i18n(&#39;bad_arguments&#39;, { &#39;routine&#39; =&gt; $routine, &#39;reason&#39; =&gt; $reason }));</td></tr>
-<tr><td class="h">555</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">556</td><td colspan="6"></td></tr><tr><td class="h">557</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $validated;</td></tr>
-<tr><td class="h">558</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L558">10</a></div></td><td><div>2068</div><div>9</div><div>40</div></td><td class="s">}</td></tr>
-<tr><td class="h">559</td><td colspan="6"></td></tr><tr><td class="h">560</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose: read an address into its parts.</td></tr>
-<tr><td class="h">561</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry: $text is a From-style address, with or without a display name.</td></tr>
-<tr><td class="h">562</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit: an Email::Address::XS object, or undef if $text holds no valid</td></tr>
-<tr><td class="h">563</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;address.&nbsp;&nbsp;Email::Address::XS, not a regex, because a display name may</td></tr>
-<tr><td class="h">564</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;itself contain an &#39;@&#39;.</td></tr>
-<tr><td class="h">565</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects: none.</td></tr>
-<tr><td class="h">566</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _parse_address :Private</td></tr>
-<tr><td class="h">567</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
-<tr><td class="h">568</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $text) = @_;</td></tr>
-<tr><td class="h">569</td><td colspan="6"></td></tr><tr><td class="h">570</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Warnings are silenced here (Email::Address::XS carps about junk), for the</td></tr>
-<tr><td class="h">571</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# same reason _say_to_stderr() avoids warn(): one could loop back to us</td></tr>
-<tr><td class="h">572</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;local $SIG{&#39;__WARN__&#39;} = sub { };</td></tr>
-<tr><td class="h">573</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($address) = (defined($text) &amp;&amp; length($text)) ? Email::Address::XS-&gt;parse($text) : ();</td></tr>
-<tr><td class="h">574</td><td colspan="6"></td></tr><tr><td class="h">575</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return ($address &amp;&amp; $address-&gt;is_valid()) ? $address : undef;</td></tr>
-<tr><td class="h">576</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L576">10</a></div></td><td><div>1499</div><div>6</div><div>40</div></td><td class="s">}</td></tr>
-<tr><td class="h">577</td><td colspan="6"></td></tr><tr><td class="h">578</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose: make a value safe to use as the text of one header line.</td></tr>
-<tr><td class="h">579</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry: $value is a string.</td></tr>
-<tr><td class="h">580</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit: the string with each run of line breaks replaced by one space, so it</td></tr>
-<tr><td class="h">581</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cannot end its own header and begin another (header injection).</td></tr>
-<tr><td class="h">582</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects: none.</td></tr>
-<tr><td class="h">583</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _one_line :Private</td></tr>
-<tr><td class="h">584</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
-<tr><td class="h">585</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $value) = @_;</td></tr>
-<tr><td class="h">586</td><td colspan="6"></td></tr><tr><td class="h">587</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$value =~ s/$LINE_BREAKS_RE/ /g;</td></tr>
-<tr><td class="h">588</td><td colspan="6"></td></tr><tr><td class="h">589</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $value;</td></tr>
-<tr><td class="h">590</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L590">10</a></div></td><td><div>1399</div><div>6</div><div>49</div></td><td class="s">}</td></tr>
-<tr><td class="h">591</td><td colspan="6"></td></tr><tr><td class="h">592</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose: read an override from the environment.</td></tr>
-<tr><td class="h">593</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry: $setting is a key of %ENV_VAR; anything else croaks.</td></tr>
-<tr><td class="h">594</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit: the variable&#39;s value, or undef if it is unset or empty.</td></tr>
-<tr><td class="h">595</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects: none.</td></tr>
-<tr><td class="h">596</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _from_environment :Private</td></tr>
-<tr><td class="h">597</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
-<tr><td class="h">598</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $setting) = @_;</td></tr>
-<tr><td class="h">599</td><td colspan="6"></td></tr><tr><td class="h">600</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# A misspelt setting is a bug in this module; do not read $ENV{undef}</td></tr>
-<tr><td class="h">601</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;croak($self-&gt;i18n(&#39;unknown_setting&#39;, { &#39;setting&#39; =&gt; $setting })) unless(exists($ENV_VAR{$setting}));</td></tr>
-<tr><td class="h">602</td><td colspan="6"></td></tr><tr><td class="h">603</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $value = $ENV{$ENV_VAR{$setting}};</td></tr>
-<tr><td class="h">604</td><td colspan="6"></td></tr><tr><td class="h">605</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return (defined($value) &amp;&amp; length($value)) ? $value : undef;</td></tr>
-<tr><td class="h">606</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L606">10</a></div></td><td><div>1384</div><div>5</div><div>31</div></td><td class="s">}</td></tr>
-<tr><td class="h">607</td><td colspan="6"></td></tr><tr><td class="h">608</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose: find the private key to sign with.</td></tr>
-<tr><td class="h">609</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry: none; consults DKIM_KEYFILE, DKIM_KEYDIR and the home</td></tr>
-<tr><td class="h">610</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;directory.</td></tr>
-<tr><td class="h">611</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit: the path of DKIM_KEYFILE, or else of the highest-named</td></tr>
-<tr><td class="h">612</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*.private in the key directory, or undef if there is none.</td></tr>
-<tr><td class="h">613</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects: reads a directory.&nbsp;&nbsp;A directory listing is used instead of</td></tr>
-<tr><td class="h">614</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glob() because glob() splits on spaces and expands &#39;[&#39; and &#39;*&#39;.</td></tr>
-<tr><td class="h">615</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _find_key_file :Private</td></tr>
-<tr><td class="h">616</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
-<tr><td class="h">617</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $self = shift;</td></tr>
-<tr><td class="h">618</td><td colspan="6"></td></tr><tr><td class="h">619</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $keyfile = $self-&gt;_from_environment(&#39;keyfile&#39;);</td></tr>
-<tr><td class="h">620</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $keyfile if(defined($keyfile));</td></tr>
-<tr><td class="h">621</td><td colspan="6"></td></tr><tr><td class="h">622</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $dir = $self-&gt;_from_environment(&#39;keydir&#39;);</td></tr>
-<tr><td class="h">623</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!defined($dir)) {</td></tr>
-<tr><td class="h">624</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $home = File::HomeDir-&gt;my_home();</td></tr>
-<tr><td class="h">625</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$dir = File::Spec-&gt;catdir($home, $KEY_DIR_NAME) if(defined($home));</td></tr>
-<tr><td class="h">626</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">627</td><td colspan="6"></td></tr><tr><td class="h">628</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(defined($dir) &amp;&amp; -d $dir) {</td></tr>
-<tr><td class="h">629</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Only regular files count (a directory called x.private is no key).&nbsp;&nbsp;A</td></tr>
-<tr><td class="h">630</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# directory that cannot be read, or that vanishes now, means &quot;no key&quot;,</td></tr>
-<tr><td class="h">631</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# which sends the mail unsigned, not an exception from the logger.</td></tr>
-<tr><td class="h">632</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my @names = eval {</td></tr>
-<tr><td class="h">633</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;opendir(my $handle, $dir);</td></tr>
-<tr><td class="h">634</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my @found = sort grep { /\Q$KEY_FILE_SUFFIX\E\z/ &amp;&amp; -f File::Spec-&gt;catfile($dir, $_) } readdir($handle);</td></tr>
-<tr><td class="h">635</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;closedir($handle);</td></tr>
-<tr><td class="h">636</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@found;</td></tr>
-<tr><td class="h">637</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</td></tr>
-<tr><td class="h">638</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$keyfile = File::Spec-&gt;catfile($dir, $names[-1]) if(@names);</td></tr>
-<tr><td class="h">639</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">640</td><td colspan="6"></td></tr><tr><td class="h">641</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $keyfile;</td></tr>
-<tr><td class="h">642</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L642">10</a></div></td><td><div>1880</div><div>6</div><div>35</div></td><td class="s">}</td></tr>
-<tr><td class="h">643</td><td colspan="6"></td></tr><tr><td class="h">644</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose: work out how to sign this message.</td></tr>
-<tr><td class="h">645</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry: $sender is the Email::Address::XS of the From address.</td></tr>
-<tr><td class="h">646</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit: a hash reference { domain, selector, keyfile }; any may be undef.</td></tr>
-<tr><td class="h">647</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The domain is the one From: claims, because a signature for any other</td></tr>
-<tr><td class="h">648</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain would not align with the message; the selector is the key&#39;s file</td></tr>
-<tr><td class="h">649</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name.&nbsp;&nbsp;The environment overrides each.</td></tr>
-<tr><td class="h">650</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects: reads a directory (see _find_key_file).</td></tr>
-<tr><td class="h">651</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _signing_key :Private</td></tr>
-<tr><td class="h">652</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
-<tr><td class="h">653</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $sender) = @_;</td></tr>
-<tr><td class="h">654</td><td colspan="6"></td></tr><tr><td class="h">655</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $keyfile = $self-&gt;_find_key_file();</td></tr>
-<tr><td class="h">656</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $selector = $self-&gt;_from_environment(&#39;selector&#39;);</td></tr>
-<tr><td class="h">657</td><td colspan="6"></td></tr><tr><td class="h">658</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!defined($selector) &amp;&amp; defined($keyfile) &amp;&amp; basename($keyfile) =~ $KEY_FILE_RE) {</td></tr>
-<tr><td class="h">659</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$selector = $1;</td></tr>
-<tr><td class="h">660</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">661</td><td colspan="6"></td></tr><tr><td class="h">662</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return {</td></tr>
-<tr><td class="h">663</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;domain&#39; =&gt; $self-&gt;_from_environment(&#39;domain&#39;) // $sender-&gt;host(),</td></tr>
-<tr><td class="h">664</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;selector&#39; =&gt; $selector,</td></tr>
-<tr><td class="h">665</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;keyfile&#39; =&gt; $keyfile,</td></tr>
-<tr><td class="h">666</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</td></tr>
-<tr><td class="h">667</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L667">10</a></div></td><td><div>1894</div><div>5</div><div>35</div></td><td class="s">}</td></tr>
-<tr><td class="h">668</td><td colspan="6"></td></tr><tr><td class="h">669</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose: run a piece of code with STDERR discarded.</td></tr>
-<tr><td class="h">670</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry: $code is a code reference.</td></tr>
-<tr><td class="h">671</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit: whatever $code returns (in scalar context).</td></tr>
-<tr><td class="h">672</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects: some sendmail implementations write a warning to STDERR that</td></tr>
-<tr><td class="h">673</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;breaks CGI output, so STDERR is the null device while $code runs and is</td></tr>
-<tr><td class="h">674</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;restored after, as Log::Dispatch::Email::Sendmail does.&nbsp;&nbsp;If the null</td></tr>
-<tr><td class="h">675</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;device cannot be opened $code runs anyway: a noisy message beats a lost one.</td></tr>
-<tr><td class="h">676</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _without_stderr :Private</td></tr>
-<tr><td class="h">677</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
-<tr><td class="h">678</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $code) = @_;</td></tr>
-<tr><td class="h">679</td><td colspan="6"></td></tr><tr><td class="h">680</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $result;</td></tr>
-<tr><td class="h">681</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</td></tr>
-<tr><td class="h">682</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;local *STDERR;</td></tr>
-<tr><td class="h">683</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eval { open(STDERR, &#39;&gt;&#39;, File::Spec-&gt;devnull()); 1 };</td></tr>
-<tr><td class="h">684</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$result = $code-&gt;();</td></tr>
-<tr><td class="h">685</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">686</td><td colspan="6"></td></tr><tr><td class="h">687</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $result;</td></tr>
-<tr><td class="h">688</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L688">10</a></div></td><td><div>1809</div><div>7</div><div>32</div></td><td class="s">}</td></tr>
-<tr><td class="h">689</td><td colspan="6"></td></tr><tr><td class="h">690</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose: sign and send one message.</td></tr>
-<tr><td class="h">691</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry: $sender is an Email::Address::XS; $message is the body text;</td></tr>
-<tr><td class="h">692</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$self-&gt;{to} is a non-empty array reference.</td></tr>
-<tr><td class="h">693</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit: $self, for chaining.</td></tr>
-<tr><td class="h">694</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects: runs sendmail(1); warns if the message is unsigned or the</td></tr>
-<tr><td class="h">695</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;send failed.</td></tr>
-<tr><td class="h">696</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _deliver :Private</td></tr>
+<tr><td class="h">475</td><td colspan="6"></td></tr><tr><td class="h">476</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub i18n :Protected</td></tr>
+<tr><td class="h">477</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
+<tr><td class="h">478</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $key, $args) = @_;</td></tr>
+<tr><td class="h">479</td><td colspan="6"></td></tr><tr><td class="h">480</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$args ||= {};</td></tr>
+<tr><td class="h">481</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $entry = defined($MESSAGES{$key}) ? $self-&gt;_choose_variant($MESSAGES{$key}, $args) : undef;</td></tr>
+<tr><td class="h">482</td><td colspan="6"></td></tr><tr><td class="h">483</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# No such key, or a message with no usable variant: show the key, so the</td></tr>
+<tr><td class="h">484</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# gap is visible rather than fatal</td></tr>
+<tr><td class="h">485</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return defined($entry) ? sprintf($entry-&gt;[0], map { $args-&gt;{$_} // q{} } @{$entry}[1 .. $#{$entry}]) : $key;</td></tr>
+<tr><td class="h">486</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L486">10</a></div></td><td><div>1522</div><div>7</div><div>80</div></td><td class="s">}</td></tr>
+<tr><td class="h">487</td><td colspan="6"></td></tr><tr><td class="h">488</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose: pick the wording for a message that has variants.</td></tr>
+<tr><td class="h">489</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry: $entry is an array reference (returned as it is) or a hash reference</td></tr>
+<tr><td class="h">490</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of variants; $args is a hash reference.</td></tr>
+<tr><td class="h">491</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit: an array reference [ $format, @names ], or undef if a hash of variants</td></tr>
+<tr><td class="h">492</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;has none that applies.&nbsp;&nbsp;The variant named by $args-&gt;{gender} wins, then</td></tr>
+<tr><td class="h">493</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;one&#39; when $args-&gt;{count} is the number 1, then &#39;other&#39;.&nbsp;&nbsp;A count that is</td></tr>
+<tr><td class="h">494</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;not a number is not 1.</td></tr>
+<tr><td class="h">495</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects: none.</td></tr>
+<tr><td class="h">496</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _choose_variant :Private</td></tr>
+<tr><td class="h">497</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
+<tr><td class="h">498</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $entry, $args) = @_;</td></tr>
+<tr><td class="h">499</td><td colspan="6"></td></tr><tr><td class="h">500</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(ref($entry) eq &#39;HASH&#39;) {</td></tr>
+<tr><td class="h">501</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $count = $args-&gt;{&#39;count&#39;};</td></tr>
+<tr><td class="h">502</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $is_one = defined($count) &amp;&amp; looks_like_number($count) &amp;&amp; $count == 1;</td></tr>
+<tr><td class="h">503</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my @wanted = grep { defined } ($args-&gt;{&#39;gender&#39;}, $is_one ? &#39;one&#39; : undef, &#39;other&#39;);</td></tr>
+<tr><td class="h">504</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($found) = grep { exists $entry-&gt;{$_} } @wanted;</td></tr>
+<tr><td class="h">505</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$entry = defined($found) ? $entry-&gt;{$found} : undef;</td></tr>
+<tr><td class="h">506</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">507</td><td colspan="6"></td></tr><tr><td class="h">508</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $entry;</td></tr>
+<tr><td class="h">509</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L509">10</a></div></td><td><div>2003</div><div>5</div><div>43</div></td><td class="s">}</td></tr>
+<tr><td class="h">510</td><td colspan="6"></td></tr><tr><td class="h">511</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose: raise a warning in the user&#39;s words.</td></tr>
+<tr><td class="h">512</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry: $key and $args as for i18n().</td></tr>
+<tr><td class="h">513</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit: $self, for chaining.</td></tr>
+<tr><td class="h">514</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects: a carp(), reported from the caller&#39;s point of view.</td></tr>
+<tr><td class="h">515</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _warn_user :Private</td></tr>
+<tr><td class="h">516</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
+<tr><td class="h">517</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $key, $args) = @_;</td></tr>
+<tr><td class="h">518</td><td colspan="6"></td></tr><tr><td class="h">519</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;carp($self-&gt;i18n($key, $args));</td></tr>
+<tr><td class="h">520</td><td colspan="6"></td></tr><tr><td class="h">521</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $self;</td></tr>
+<tr><td class="h">522</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L522">10</a></div></td><td><div>1654</div><div>6</div><div>31</div></td><td class="s">}</td></tr>
+<tr><td class="h">523</td><td colspan="6"></td></tr><tr><td class="h">524</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose: report a problem that must not go through the warn() machinery.</td></tr>
+<tr><td class="h">525</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry: $key and $args as for i18n().</td></tr>
+<tr><td class="h">526</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit: $self, for chaining.</td></tr>
+<tr><td class="h">527</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects: a line on STDERR.&nbsp;&nbsp;Not a warning, because a warn handler may</td></tr>
+<tr><td class="h">528</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log it, which would send it back through this appender.</td></tr>
+<tr><td class="h">529</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _say_to_stderr :Private</td></tr>
+<tr><td class="h">530</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
+<tr><td class="h">531</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $key, $args) = @_;</td></tr>
+<tr><td class="h">532</td><td colspan="6"></td></tr><tr><td class="h">533</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print STDERR $self-&gt;i18n($key, $args), &quot;\n&quot;;</td></tr>
+<tr><td class="h">534</td><td colspan="6"></td></tr><tr><td class="h">535</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $self;</td></tr>
+<tr><td class="h">536</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L536">10</a></div></td><td><div>1360</div><div>3</div><div>30</div></td><td class="s">}</td></tr>
+<tr><td class="h">537</td><td colspan="6"></td></tr><tr><td class="h">538</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose: normalise and check the arguments of a public routine.</td></tr>
+<tr><td class="h">539</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry: $routine is its name (for the message); $arguments is an array</td></tr>
+<tr><td class="h">540</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reference to its @_, in any form Params::Get understands.</td></tr>
+<tr><td class="h">541</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit: a hash reference of the validated arguments.&nbsp;&nbsp;Croaks, in the user&#39;s</td></tr>
+<tr><td class="h">542</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;words, if they do not match $SEND_EMAIL_SCHEMA.</td></tr>
+<tr><td class="h">543</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects: none.</td></tr>
+<tr><td class="h">544</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _validated_arguments :Private</td></tr>
+<tr><td class="h">545</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
+<tr><td class="h">546</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $routine, $arguments) = @_;</td></tr>
+<tr><td class="h">547</td><td colspan="6"></td></tr><tr><td class="h">548</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $validated = eval {</td></tr>
+<tr><td class="h">549</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;validate_strict(</td></tr>
+<tr><td class="h">550</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;schema&#39; =&gt; $SEND_EMAIL_SCHEMA,</td></tr>
+<tr><td class="h">551</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;input&#39; =&gt; get_params(undef, $arguments),</td></tr>
+<tr><td class="h">552</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;unknown_parameter_handler&#39; =&gt; &#39;ignore&#39;,</td></tr>
+<tr><td class="h">553</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</td></tr>
+<tr><td class="h">554</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</td></tr>
+<tr><td class="h">555</td><td colspan="6"></td></tr><tr><td class="h">556</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# validate_strict() lets an undef through a required parameter, by design,</td></tr>
+<tr><td class="h">557</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# so a missing message is checked for as well</td></tr>
+<tr><td class="h">558</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $reason = $@ || (defined($validated-&gt;{&#39;message&#39;}) ? q{} : $self-&gt;i18n(&#39;no_message&#39;));</td></tr>
+<tr><td class="h">559</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(length($reason)) {</td></tr>
+<tr><td class="h">560</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# The reason ends in a newline when it came from a die(); drop it so the</td></tr>
+<tr><td class="h">561</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# message stays on one line, with croak&#39;s own location after it</td></tr>
+<tr><td class="h">562</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;chomp($reason);</td></tr>
+<tr><td class="h">563</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;croak($self-&gt;i18n(&#39;bad_arguments&#39;, { &#39;routine&#39; =&gt; $routine, &#39;reason&#39; =&gt; $reason }));</td></tr>
+<tr><td class="h">564</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">565</td><td colspan="6"></td></tr><tr><td class="h">566</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $validated;</td></tr>
+<tr><td class="h">567</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L567">10</a></div></td><td><div>1400</div><div>3</div><div>31</div></td><td class="s">}</td></tr>
+<tr><td class="h">568</td><td colspan="6"></td></tr><tr><td class="h">569</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose: read an address into its parts.</td></tr>
+<tr><td class="h">570</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry: $text is a From-style address, with or without a display name.</td></tr>
+<tr><td class="h">571</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit: an Email::Address::XS object, or undef if $text holds no valid</td></tr>
+<tr><td class="h">572</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;address.&nbsp;&nbsp;Email::Address::XS, not a regex, because a display name may</td></tr>
+<tr><td class="h">573</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;itself contain an &#39;@&#39;.</td></tr>
+<tr><td class="h">574</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects: none.</td></tr>
+<tr><td class="h">575</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _parse_address :Private</td></tr>
+<tr><td class="h">576</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
+<tr><td class="h">577</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $text) = @_;</td></tr>
+<tr><td class="h">578</td><td colspan="6"></td></tr><tr><td class="h">579</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Warnings are silenced here (Email::Address::XS carps about junk), for the</td></tr>
+<tr><td class="h">580</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# same reason _say_to_stderr() avoids warn(): one could loop back to us</td></tr>
+<tr><td class="h">581</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;local $SIG{&#39;__WARN__&#39;} = sub { };</td></tr>
+<tr><td class="h">582</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($address) = (defined($text) &amp;&amp; length($text)) ? Email::Address::XS-&gt;parse($text) : ();</td></tr>
+<tr><td class="h">583</td><td colspan="6"></td></tr><tr><td class="h">584</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return ($address &amp;&amp; $address-&gt;is_valid()) ? $address : undef;</td></tr>
+<tr><td class="h">585</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L585">10</a></div></td><td><div>1634</div><div>7</div><div>32</div></td><td class="s">}</td></tr>
+<tr><td class="h">586</td><td colspan="6"></td></tr><tr><td class="h">587</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose: make a value safe to use as the text of one header line.</td></tr>
+<tr><td class="h">588</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry: $value is a string.</td></tr>
+<tr><td class="h">589</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit: the string with each run of line breaks replaced by one space, so it</td></tr>
+<tr><td class="h">590</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cannot end its own header and begin another (header injection).</td></tr>
+<tr><td class="h">591</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects: none.</td></tr>
+<tr><td class="h">592</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _one_line :Private</td></tr>
+<tr><td class="h">593</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
+<tr><td class="h">594</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $value) = @_;</td></tr>
+<tr><td class="h">595</td><td colspan="6"></td></tr><tr><td class="h">596</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$value =~ s/$LINE_BREAKS_RE/ /g;</td></tr>
+<tr><td class="h">597</td><td colspan="6"></td></tr><tr><td class="h">598</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $value;</td></tr>
+<tr><td class="h">599</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L599">10</a></div></td><td><div>944</div><div>6</div><div>27</div></td><td class="s">}</td></tr>
+<tr><td class="h">600</td><td colspan="6"></td></tr><tr><td class="h">601</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose: read an override from the environment.</td></tr>
+<tr><td class="h">602</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry: $setting is a key of %ENV_VAR; anything else croaks.</td></tr>
+<tr><td class="h">603</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit: the variable&#39;s value, or undef if it is unset or empty.</td></tr>
+<tr><td class="h">604</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects: none.</td></tr>
+<tr><td class="h">605</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _from_environment :Private</td></tr>
+<tr><td class="h">606</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
+<tr><td class="h">607</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $setting) = @_;</td></tr>
+<tr><td class="h">608</td><td colspan="6"></td></tr><tr><td class="h">609</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# A misspelt setting is a bug in this module; do not read $ENV{undef}</td></tr>
+<tr><td class="h">610</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;croak($self-&gt;i18n(&#39;unknown_setting&#39;, { &#39;setting&#39; =&gt; $setting })) unless(exists($ENV_VAR{$setting}));</td></tr>
+<tr><td class="h">611</td><td colspan="6"></td></tr><tr><td class="h">612</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $value = $ENV{$ENV_VAR{$setting}};</td></tr>
+<tr><td class="h">613</td><td colspan="6"></td></tr><tr><td class="h">614</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return (defined($value) &amp;&amp; length($value)) ? $value : undef;</td></tr>
+<tr><td class="h">615</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L615">10</a></div></td><td><div>1349</div><div>6</div><div>25</div></td><td class="s">}</td></tr>
+<tr><td class="h">616</td><td colspan="6"></td></tr><tr><td class="h">617</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose: the sendmail named by the SENDMAIL variable that Mail::Send::DKIM</td></tr>
+<tr><td class="h">618</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;also reads.</td></tr>
+<tr><td class="h">619</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit: its value, or undef if it is unset or empty.</td></tr>
+<tr><td class="h">620</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects: none.</td></tr>
+<tr><td class="h">621</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _plain_sendmail :Private</td></tr>
+<tr><td class="h">622</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
+<tr><td class="h">623</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $value = $ENV{&#39;SENDMAIL&#39;};</td></tr>
+<tr><td class="h">624</td><td colspan="6"></td></tr><tr><td class="h">625</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return (defined($value) &amp;&amp; length($value)) ? $value : undef;</td></tr>
+<tr><td class="h">626</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L626">10</a></div></td><td><div>1357</div><div>8</div><div>21</div></td><td class="s">}</td></tr>
+<tr><td class="h">627</td><td colspan="6"></td></tr><tr><td class="h">628</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose: find the private key to sign with.</td></tr>
+<tr><td class="h">629</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry: none; consults DKIM_KEYFILE, DKIM_KEYDIR and the home</td></tr>
+<tr><td class="h">630</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;directory.</td></tr>
+<tr><td class="h">631</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit: the path of DKIM_KEYFILE, or else of the highest-named</td></tr>
+<tr><td class="h">632</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*.private in the key directory, or undef if there is none.</td></tr>
+<tr><td class="h">633</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects: reads a directory.&nbsp;&nbsp;A directory listing is used instead of</td></tr>
+<tr><td class="h">634</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glob() because glob() splits on spaces and expands &#39;[&#39; and &#39;*&#39;.</td></tr>
+<tr><td class="h">635</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _find_key_file :Private</td></tr>
+<tr><td class="h">636</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
+<tr><td class="h">637</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $self = shift;</td></tr>
+<tr><td class="h">638</td><td colspan="6"></td></tr><tr><td class="h">639</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $keyfile = $self-&gt;_from_environment(&#39;keyfile&#39;);</td></tr>
+<tr><td class="h">640</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $keyfile if(defined($keyfile));</td></tr>
+<tr><td class="h">641</td><td colspan="6"></td></tr><tr><td class="h">642</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $dir = $self-&gt;_from_environment(&#39;keydir&#39;);</td></tr>
+<tr><td class="h">643</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!defined($dir)) {</td></tr>
+<tr><td class="h">644</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $home = File::HomeDir-&gt;my_home();</td></tr>
+<tr><td class="h">645</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$dir = File::Spec-&gt;catdir($home, $KEY_DIR_NAME) if(defined($home));</td></tr>
+<tr><td class="h">646</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">647</td><td colspan="6"></td></tr><tr><td class="h">648</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(defined($dir) &amp;&amp; -d $dir) {</td></tr>
+<tr><td class="h">649</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Only regular files count (a directory called x.private is no key).&nbsp;&nbsp;A</td></tr>
+<tr><td class="h">650</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# directory that cannot be read, or that vanishes now, means &quot;no key&quot;,</td></tr>
+<tr><td class="h">651</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# which sends the mail unsigned, not an exception from the logger.</td></tr>
+<tr><td class="h">652</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my @names = eval {</td></tr>
+<tr><td class="h">653</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;opendir(my $handle, $dir);</td></tr>
+<tr><td class="h">654</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my @found = sort grep { /\Q$KEY_FILE_SUFFIX\E\z/ &amp;&amp; -f File::Spec-&gt;catfile($dir, $_) } readdir($handle);</td></tr>
+<tr><td class="h">655</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;closedir($handle);</td></tr>
+<tr><td class="h">656</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@found;</td></tr>
+<tr><td class="h">657</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</td></tr>
+<tr><td class="h">658</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$keyfile = File::Spec-&gt;catfile($dir, $names[-1]) if(@names);</td></tr>
+<tr><td class="h">659</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">660</td><td colspan="6"></td></tr><tr><td class="h">661</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $keyfile;</td></tr>
+<tr><td class="h">662</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L662">10</a></div></td><td><div>2131</div><div>7</div><div>26</div></td><td class="s">}</td></tr>
+<tr><td class="h">663</td><td colspan="6"></td></tr><tr><td class="h">664</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose: work out how to sign this message.</td></tr>
+<tr><td class="h">665</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry: $sender is the Email::Address::XS of the From address.</td></tr>
+<tr><td class="h">666</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit: a hash reference { domain, selector, keyfile }; any may be undef.</td></tr>
+<tr><td class="h">667</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The domain is the one From: claims, because a signature for any other</td></tr>
+<tr><td class="h">668</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain would not align with the message; the selector is the key&#39;s file</td></tr>
+<tr><td class="h">669</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name.&nbsp;&nbsp;The environment overrides each.</td></tr>
+<tr><td class="h">670</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects: reads a directory (see _find_key_file).</td></tr>
+<tr><td class="h">671</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _signing_key :Private</td></tr>
+<tr><td class="h">672</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
+<tr><td class="h">673</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $sender) = @_;</td></tr>
+<tr><td class="h">674</td><td colspan="6"></td></tr><tr><td class="h">675</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $keyfile = $self-&gt;_find_key_file();</td></tr>
+<tr><td class="h">676</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $selector = $self-&gt;_from_environment(&#39;selector&#39;);</td></tr>
+<tr><td class="h">677</td><td colspan="6"></td></tr><tr><td class="h">678</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!defined($selector) &amp;&amp; defined($keyfile) &amp;&amp; basename($keyfile) =~ $KEY_FILE_RE) {</td></tr>
+<tr><td class="h">679</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$selector = $1;</td></tr>
+<tr><td class="h">680</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">681</td><td colspan="6"></td></tr><tr><td class="h">682</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return {</td></tr>
+<tr><td class="h">683</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;domain&#39; =&gt; $self-&gt;_from_environment(&#39;domain&#39;) // $sender-&gt;host(),</td></tr>
+<tr><td class="h">684</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;selector&#39; =&gt; $selector,</td></tr>
+<tr><td class="h">685</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;keyfile&#39; =&gt; $keyfile,</td></tr>
+<tr><td class="h">686</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</td></tr>
+<tr><td class="h">687</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L687">10</a></div></td><td><div>1339</div><div>5</div><div>23</div></td><td class="s">}</td></tr>
+<tr><td class="h">688</td><td colspan="6"></td></tr><tr><td class="h">689</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose: run a piece of code with STDERR discarded.</td></tr>
+<tr><td class="h">690</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry: $code is a code reference.</td></tr>
+<tr><td class="h">691</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit: whatever $code returns (in scalar context).</td></tr>
+<tr><td class="h">692</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects: some sendmail implementations write a warning to STDERR that</td></tr>
+<tr><td class="h">693</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;breaks CGI output, so STDERR is the null device while $code runs and is</td></tr>
+<tr><td class="h">694</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;restored after, as Log::Dispatch::Email::Sendmail does.&nbsp;&nbsp;If the null</td></tr>
+<tr><td class="h">695</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;device cannot be opened $code runs anyway: a noisy message beats a lost one.</td></tr>
+<tr><td class="h">696</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _without_stderr :Private</td></tr>
 <tr><td class="h">697</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
-<tr><td class="h">698</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $sender, $message) = @_;</td></tr>
-<tr><td class="h">699</td><td colspan="6"></td></tr><tr><td class="h">700</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $key = $self-&gt;_signing_key($sender);</td></tr>
-<tr><td class="h">701</td><td colspan="6"></td></tr><tr><td class="h">702</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Unsigned mail is still sent, but whoever reads the log should hear of it</td></tr>
-<tr><td class="h">703</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $signed = (defined($key-&gt;{&#39;domain&#39;}) &amp;&amp; defined($key-&gt;{&#39;selector&#39;}) &amp;&amp; defined($key-&gt;{&#39;keyfile&#39;}) &amp;&amp; -r $key-&gt;{&#39;keyfile&#39;});</td></tr>
-<tr><td class="h">704</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!$signed) {</td></tr>
-<tr><td class="h">705</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$self-&gt;_warn_user(&#39;no_key&#39;, { &#39;domain&#39; =&gt; $key-&gt;{&#39;domain&#39;} // $self-&gt;i18n(&#39;unknown_domain&#39;) });</td></tr>
-<tr><td class="h">706</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">707</td><td colspan="6"></td></tr><tr><td class="h">708</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;require Mail::Send::DKIM;</td></tr>
-<tr><td class="h">709</td><td colspan="6"></td></tr><tr><td class="h">710</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $dkim = Mail::Send::DKIM-&gt;new(</td></tr>
-<tr><td class="h">711</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Which messages to sign is decided by the From: domain; the signature</td></tr>
-<tr><td class="h">712</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# is for the signing domain, which DKIM_DOMAIN may change</td></tr>
-<tr><td class="h">713</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;domains&#39; =&gt; [ $sender-&gt;host() ],</td></tr>
-<tr><td class="h">714</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;signing_domain&#39; =&gt; $key-&gt;{&#39;domain&#39;},</td></tr>
-<tr><td class="h">715</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;selector&#39; =&gt; $key-&gt;{&#39;selector&#39;},</td></tr>
-<tr><td class="h">716</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;keyfile&#39; =&gt; $key-&gt;{&#39;keyfile&#39;},</td></tr>
-<tr><td class="h">717</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;sendmail&#39; =&gt; $self-&gt;_from_environment(&#39;sendmail&#39;) // $DEFAULT_SENDMAIL,</td></tr>
-<tr><td class="h">718</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</td></tr>
-<tr><td class="h">719</td><td colspan="6"></td></tr><tr><td class="h">720</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $text = join(&quot;\n&quot;,</td></tr>
-<tr><td class="h">721</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;To: &#39; . $self-&gt;_one_line(join(&#39;,&#39;, @{$self-&gt;{&#39;to&#39;}})),</td></tr>
-<tr><td class="h">722</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;From: &#39; . $self-&gt;_one_line($self-&gt;{&#39;from&#39;}),</td></tr>
-<tr><td class="h">723</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;Subject: &#39; . $self-&gt;_one_line($self-&gt;{&#39;subject&#39;}),</td></tr>
-<tr><td class="h">724</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) . &quot;\n\n&quot; . $message;</td></tr>
-<tr><td class="h">725</td><td colspan="6"></td></tr><tr><td class="h">726</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# sign() returns undef when it cannot sign, and the message goes unsigned</td></tr>
-<tr><td class="h">727</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($signed) {</td></tr>
-<tr><td class="h">728</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $signed_text = $dkim-&gt;sign($text);</td></tr>
-<tr><td class="h">729</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$text = $signed_text if(defined($signed_text));</td></tr>
-<tr><td class="h">730</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
-<tr><td class="h">731</td><td colspan="6"></td></tr><tr><td class="h">732</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# The envelope sender is the bare address: a display name would be</td></tr>
-<tr><td class="h">733</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# refused as an invalid sendmail -f argument</td></tr>
-<tr><td class="h">734</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $status = $self-&gt;_without_stderr(sub { $dkim-&gt;send($text, &#39;-t&#39;, &#39;-f&#39;, $sender-&gt;address()) });</td></tr>
-<tr><td class="h">735</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$self-&gt;_warn_user(&#39;send_failed&#39;, { &#39;sender&#39; =&gt; $sender-&gt;address() }) if($status);</td></tr>
-<tr><td class="h">736</td><td colspan="6"></td></tr><tr><td class="h">737</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $self;</td></tr>
-<tr><td class="h">738</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L738">10</a></div></td><td><div>2132</div><div>17</div><div>44</div></td><td class="s">}</td></tr>
-<tr><td class="h">739</td><td colspan="6"></td></tr><tr><td class="h">740 - 954</td><td colspan="5"></td><td class="s"><pre>=head1 EXAMPLES
+<tr><td class="h">698</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $code) = @_;</td></tr>
+<tr><td class="h">699</td><td colspan="6"></td></tr><tr><td class="h">700</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $result;</td></tr>
+<tr><td class="h">701</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</td></tr>
+<tr><td class="h">702</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;local *STDERR;</td></tr>
+<tr><td class="h">703</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eval { open(STDERR, &#39;&gt;&#39;, File::Spec-&gt;devnull()); 1 };</td></tr>
+<tr><td class="h">704</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$result = $code-&gt;();</td></tr>
+<tr><td class="h">705</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">706</td><td colspan="6"></td></tr><tr><td class="h">707</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $result;</td></tr>
+<tr><td class="h">708</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L708">10</a></div></td><td><div>1494</div><div>20</div><div>30</div></td><td class="s">}</td></tr>
+<tr><td class="h">709</td><td colspan="6"></td></tr><tr><td class="h">710</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Purpose: sign and send one message.</td></tr>
+<tr><td class="h">711</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Entry: $sender is an Email::Address::XS; $message is the body text;</td></tr>
+<tr><td class="h">712</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$self-&gt;{to} is a non-empty array reference.</td></tr>
+<tr><td class="h">713</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Exit: $self, for chaining.</td></tr>
+<tr><td class="h">714</td><td></td><td></td><td></td><td></td><td></td><td class="s"># Side effects: runs sendmail(1); warns if the message is unsigned or the</td></tr>
+<tr><td class="h">715</td><td></td><td></td><td></td><td></td><td></td><td class="s">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;send failed.</td></tr>
+<tr><td class="h">716</td><td></td><td></td><td></td><td></td><td></td><td class="s">sub _deliver :Private</td></tr>
+<tr><td class="h">717</td><td></td><td></td><td></td><td></td><td></td><td class="s">{</td></tr>
+<tr><td class="h">718</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my ($self, $sender, $message) = @_;</td></tr>
+<tr><td class="h">719</td><td colspan="6"></td></tr><tr><td class="h">720</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $key = $self-&gt;_signing_key($sender);</td></tr>
+<tr><td class="h">721</td><td colspan="6"></td></tr><tr><td class="h">722</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Unsigned mail is still sent, but whoever reads the log should hear of it</td></tr>
+<tr><td class="h">723</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $signed = (defined($key-&gt;{&#39;domain&#39;}) &amp;&amp; defined($key-&gt;{&#39;selector&#39;}) &amp;&amp; defined($key-&gt;{&#39;keyfile&#39;}) &amp;&amp; -r $key-&gt;{&#39;keyfile&#39;});</td></tr>
+<tr><td class="h">724</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!$signed) {</td></tr>
+<tr><td class="h">725</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$self-&gt;_warn_user(&#39;no_key&#39;, { &#39;domain&#39; =&gt; $key-&gt;{&#39;domain&#39;} // $self-&gt;i18n(&#39;unknown_domain&#39;) });</td></tr>
+<tr><td class="h">726</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">727</td><td colspan="6"></td></tr><tr><td class="h">728</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;require Mail::Send::DKIM;</td></tr>
+<tr><td class="h">729</td><td colspan="6"></td></tr><tr><td class="h">730</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $dkim = Mail::Send::DKIM-&gt;new(</td></tr>
+<tr><td class="h">731</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Which messages to sign is decided by the From: domain; the signature</td></tr>
+<tr><td class="h">732</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# is for the signing domain, which DKIM_DOMAIN may change</td></tr>
+<tr><td class="h">733</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;domains&#39; =&gt; [ $sender-&gt;host() ],</td></tr>
+<tr><td class="h">734</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;signing_domain&#39; =&gt; $key-&gt;{&#39;domain&#39;},</td></tr>
+<tr><td class="h">735</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;selector&#39; =&gt; $key-&gt;{&#39;selector&#39;},</td></tr>
+<tr><td class="h">736</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;keyfile&#39; =&gt; $key-&gt;{&#39;keyfile&#39;},</td></tr>
+<tr><td class="h">737</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;sendmail&#39; =&gt; $self-&gt;_from_environment(&#39;sendmail&#39;) // _plain_sendmail() // $DEFAULT_SENDMAIL,</td></tr>
+<tr><td class="h">738</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);</td></tr>
+<tr><td class="h">739</td><td colspan="6"></td></tr><tr><td class="h">740</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $text = join(&quot;\n&quot;,</td></tr>
+<tr><td class="h">741</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;To: &#39; . $self-&gt;_one_line(join(&#39;,&#39;, @{$self-&gt;{&#39;to&#39;}})),</td></tr>
+<tr><td class="h">742</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;From: &#39; . $self-&gt;_one_line($self-&gt;{&#39;from&#39;}),</td></tr>
+<tr><td class="h">743</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;Subject: &#39; . $self-&gt;_one_line($self-&gt;{&#39;subject&#39;}),</td></tr>
+<tr><td class="h">744</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) . &quot;\n\n&quot; . $message;</td></tr>
+<tr><td class="h">745</td><td colspan="6"></td></tr><tr><td class="h">746</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# sign() returns undef when it cannot sign, and the message goes unsigned</td></tr>
+<tr><td class="h">747</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if($signed) {</td></tr>
+<tr><td class="h">748</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $signed_text = $dkim-&gt;sign($text);</td></tr>
+<tr><td class="h">749</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$text = $signed_text if(defined($signed_text));</td></tr>
+<tr><td class="h">750</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td></tr>
+<tr><td class="h">751</td><td colspan="6"></td></tr><tr><td class="h">752</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# The envelope sender is the bare address: a display name would be</td></tr>
+<tr><td class="h">753</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# refused as an invalid sendmail -f argument</td></tr>
+<tr><td class="h">754</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my $status = $self-&gt;_without_stderr(sub { $dkim-&gt;send($text, &#39;-t&#39;, &#39;-f&#39;, $sender-&gt;address()) });</td></tr>
+<tr><td class="h">755</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$self-&gt;_warn_user(&#39;send_failed&#39;, { &#39;sender&#39; =&gt; $sender-&gt;address() }) if($status);</td></tr>
+<tr><td class="h">756</td><td colspan="6"></td></tr><tr><td class="h">757</td><td></td><td></td><td></td><td></td><td></td><td class="s">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $self;</td></tr>
+<tr><td class="h">758</td><td><div class="c3">10</div><div class="c3">10</div><div class="c3">10</div></td><td></td><td></td><td><div class="c3"><a href="blib-lib-Log-Dispatch-Email-DKIM-pm--subroutine.html#L758">10</a></div></td><td><div>2260</div><div>13</div><div>37</div></td><td class="s">}</td></tr>
+<tr><td class="h">759</td><td colspan="6"></td></tr><tr><td class="h">760 - 974</td><td colspan="5"></td><td class="s"><pre>=head1 EXAMPLES
 
 A complete log4perl configuration file, which logs everything to a file and
 emails anything of level C&lt;WARN&gt; or above.&nbsp;&nbsp;Save it as, say,
@@ -914,7 +932,7 @@ If you use it,
 please let me know.
 
 =cut</pre></td></tr>
-<tr><td class="h">955</td><td colspan="6"></td></tr><tr><td class="h">956</td><td></td><td></td><td></td><td></td><td></td><td class="s">1; # End of Log-Dispatch-Email-DKIM</td></tr>
+<tr><td class="h">975</td><td colspan="6"></td></tr><tr><td class="h">976</td><td></td><td></td><td></td><td></td><td></td><td class="s">1; # End of Log-Dispatch-Email-DKIM</td></tr>
 </table>
 </body>
 </html>
