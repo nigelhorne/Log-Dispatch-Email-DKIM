@@ -653,13 +653,15 @@ L<Locale::Maketext> if you need more.
 
 =head1 AUTHOR
 
-Nigel Horne, C<< <njh at bandsman.co.uk> >>
+Nigel Horne, C<< <njh at nigelhorne.com> >>
 
-=head1 LICENSE AND COPYRIGHT
+=head1 LICENCE AND COPYRIGHT
 
 Copyright 2026 Nigel Horne.
 
-This program is released under the following licence: GPL
+Usage is subject to the GPL2 licence terms.
+If you use it,
+please let me know.
 
 =cut
 

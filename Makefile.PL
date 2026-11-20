@@ -2,9 +2,18 @@ use strict;
 use warnings;
 use ExtUtils::MakeMaker 6.64;	# 6.64 for TEST_REQUIRES
 
+my $dist = {
+	COMPRESS => 'gzip -9f',	# Compress tarball using gzip
+	SUFFIX => 'gz',	# File suffix for tarball
+};
+
+if($^O eq 'darwin') {
+	$dist->{'TAR'} = 'gtar';
+}
+
 WriteMakefile(
 	NAME			=> 'Log::Dispatch::Email::VWFMail',
-	AUTHOR			=> q{Nigel Horne <njh@bandsman.co.uk>},
+	AUTHOR		=> q{Nigel Horne <njh@nigelhorne.com>},
 	VERSION_FROM	=> 'lib/Log/Dispatch/Email/VWFMail.pm',
 	ABSTRACT_FROM	=> 'lib/Log/Dispatch/Email/VWFMail.pm',
 	LICENSE			=> 'gpl_2',	# the bundled LICENSE is GPL version 2
@@ -31,6 +40,7 @@ WriteMakefile(
 		'File::Temp' => 0,
 	},
 	clean => { FILES => 'Log-Dispatch-Email-VWFMail-*' },
+	dist => $dist,
 	META_MERGE => {	# https://perldoc.perl.org/CPAN::Meta::Spec
 		'meta-spec' => { version => 2 },
 		resources => {
@@ -39,8 +49,10 @@ WriteMakefile(
 				url => 'https://github.com/nigelhorne/Log-Dispatch-Email-VWFMail.git',
 				web => 'https://github.com/nigelhorne/Log-Dispatch-Email-VWFMail',
 			}, bugtracker => {
-				web => 'https://github.com/nigelhorne/Log-Dispatch-Email-VWFMail/issues',
-				url => 'https://github.com/nigelhorne/Log-Dispatch-Email-VWFMail/issues',
+				web => 'https://rt.cpan.org/Public/Dist/Display.html?Name=Log-Dispatch-Email-VWFMail',
+				url => 'https://rt.cpan.org/Public/Dist/Display.html?Name=Log-Dispatch-Email-VWFMail',
+				# web => 'https://github.com/nigelhorne/Log-Dispatch-Email-VWFMail/issues',
+				# url => 'https://github.com/nigelhorne/Log-Dispatch-Email-VWFMail/issues',
 				mailto => 'bug-Log-Dispatch-Email-VWFMail@rt.cpan.org'
 			}
 		},
