@@ -1,10 +1,11 @@
 Changes
+cpanfile
+lib/Log/Dispatch/Email/VWFMail.pm
 LICENSE
+Makefile.PL
 MANIFEST
 MANIFEST.SKIP
-Makefile.PL
 README.md
-lib/Log/Dispatch/Email/VWFMail.pm
 t/00-load.t
 t/dkim/202611.private
 t/pod.t
