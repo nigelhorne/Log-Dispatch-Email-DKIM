@@ -14,6 +14,7 @@ use File::Spec;
 use Params::Get qw(get_params);
 use Params::Validate::Strict qw(validate_strict);
 use Readonly;
+use Scalar::Util qw(looks_like_number);
 
 # Private helpers are really private (a call from outside this package croaks,
 # which also works for $self->_helper() dispatch); the one protected method,
@@ -70,16 +71,47 @@ our %MESSAGES = (
 	'no_key' => ['VWFMail: no DKIM key for %s; sending unsigned', 'domain'],
 	'unknown_domain' => ['unknown domain'],
 	'send_failed' => ['VWFMail: sendmail failed for %s', 'sender'],
+	'unknown_setting' => ['VWFMail: unknown setting %s', 'setting'],
 	'no_message' => ['message is required'],
 	'bad_arguments' => ['VWFMail: invalid arguments to %s: %s', 'routine', 'reason'],
 );
 
 =head1 SYNOPSIS
 
+Pattern 1: from a log4perl configuration file.
+
     log4perl.appender.A2=Log::Dispatch::Email::VWFMail
     log4perl.appender.A2.from=webmaster@bandsman.co.uk
     log4perl.appender.A2.to=njh@bandsman.co.uk
     log4perl.appender.A2.subject=Error in shop/index.fcgi
+
+Pattern 2: directly from Log::Dispatch, sending each message at once.
+
+    use Log::Dispatch;
+
+    my $log = Log::Dispatch->new(
+        outputs => [ [
+            'Email::VWFMail',
+            'min_level' => 'error',
+            'from' => 'webmaster@bandsman.co.uk',
+            'to' => ['njh@bandsman.co.uk'],
+            'subject' => 'Error in shop/index.fcgi',
+            'buffered' => 0,
+        ] ],
+    );
+    $log->error("Something went wrong\n");
+
+Pattern 3: choose the key and the selector with environment variables (for
+example in the web server settings).
+
+    SetEnv VWF_MAIL_KEYFILE /home/site/dkim/202611.private
+    SetEnv VWF_MAIL_SELECTOR 202611
+
+Pattern 4: in a test, send to a script that saves the message instead of
+to sendmail.
+
+    local $ENV{'VWF_MAIL_SENDMAIL'} = '/tmp/capture-script';
+    $log->error("Test message\n");
 
 =head1 DESCRIPTION
 
@@ -118,6 +150,113 @@ empty variable counts as unset.
 
 The home directory comes from L<File::HomeDir>, so it is found even when the
 process (a CGI script, say) has no C<HOME> in its environment.
+
+=head1 COMMON PITFALLS
+
+=over 4
+
+=item *
+
+B<Buffering is on by default.>  Log::Dispatch::Email collects messages and
+sends ONE e-mail when the program ends (or when C<flush> is called).  Set
+C<< buffered => 0 >> to send one e-mail for each message.
+
+=item *
+
+B<You cannot give the appender a key file in its settings.>  Log::Dispatch
+throws away settings it does not know.  Use the environment variables in
+L</CONFIGURATION> instead.
+
+=item *
+
+B<An empty environment variable means "not set".>  C<VWF_MAIL_DOMAIN=""> does
+not turn anything off.
+
+=item *
+
+B<The signing domain comes from C<from>.>  If C<from> is
+C<webmaster@example.com> the message is signed for C<example.com>.  Your DKIM
+key must belong to that domain, or the receiver will not accept the signature.
+
+=item *
+
+B<The highest file name wins, not the newest file.>  Of C<202611.private> and
+C<202701.private>, the second is used.  If you keep an old key with a larger
+name, it will be used.
+
+=item *
+
+B<A missing key is not an error.>  The e-mail is still sent, without a
+signature, and you only get a warning.  Watch for the warning.
+
+=item *
+
+B<C<undef> is not a message.>  C<send_email(message =E<gt> undef)> stops with
+an error.  An empty string is accepted.
+
+=item *
+
+B<A missing C<to> or an unusable C<from> loses the message.>  Nothing is sent
+and one line is written to STDERR.  It is not a warning, so a warning handler
+will not see it.
+
+=item *
+
+B<Private routines cannot be called from outside.>  Names that start with an
+underscore croak if you call them.  Under C<prove> the check is switched off
+(C<HARNESS_ACTIVE>), so a test can pass where real code would fail.
+
+=item *
+
+B<The message catalogue is shared by the whole program.>  Changing
+C<%Log::Dispatch::Email::VWFMail::MESSAGES> changes the words for every
+appender.  Use C<local> to limit the change.
+
+=back
+
+=head1 ENCODING
+
+This module does not convert text.  It passes the bytes it is given to
+sendmail and it adds no C<Content-Type> or C<charset> header.
+
+=over 4
+
+=item B<Message body>
+
+Give it UTF-8 B<bytes> (text that is already encoded, for example with
+C<Encode::encode('UTF-8', $text)>).  Non-ASCII letters and emojis then reach
+sendmail unchanged.  Because no charset is declared, a mail program may show
+them wrongly.
+
+If you give it a Perl character string that holds a character above code
+point 255 (an emoji, for example), Perl warns C<Wide character in print> and
+sends UTF-8.  If all the characters are below 256 (an accented letter, for
+example), they are sent as single Latin-1 bytes.  Do not mix the two kinds.
+
+=item B<Subject>
+
+The same rule applies.  The subject is NOT converted to the C<=?UTF-8?...?=>
+form that older mail systems need.  Use ASCII for a safe subject.  A non-ASCII
+subject is sent as raw UTF-8, which only works with receivers that accept it.
+
+=item B<From and To addresses>
+
+Use ASCII.  A display name such as C<"Web Master"> is allowed, but it is not
+encoded either.
+
+=item B<Environment variables and file names>
+
+These are byte strings from the operating system.  Use ASCII for the selector
+and domain.  A key directory with non-ASCII letters in its name works, because
+it is read as bytes.
+
+=item B<Line breaks>
+
+In C<to>, C<from> and C<subject>, any line break is replaced by one space.  In
+the body, every line break is changed to a carriage return and line feed,
+which DKIM needs.
+
+=back
 
 =head1 METHODS
 
@@ -226,19 +365,6 @@ C<message is required>.
 
 =back
 
-=head3 FORMAL SPECIFICATION
-
-    ┌─ SendEmail ──────────────────────────────────────────────
-    │ Ξ Config
-    │ message? : STRING
-    │ sent!    : 𝔹
-    │ signed!  : 𝔹
-    ├──────────────────────────────────────────────────────────
-    │ sent!   = (to ≠ ∅ ∧ sender ∈ ADDRESS ∧ sendmail succeeds)
-    │ signed! = (sent! ∧ domain ≠ ⊥ ∧ selector ≠ ⊥ ∧ readable(keyfile))
-    │ ¬ signed! ⇒ a warning is raised (sent! is unaffected)
-    └──────────────────────────────────────────────────────────
-
 =head3 PSEUDOCODE
 
     validate the arguments (croak if there is no message)
@@ -261,8 +387,10 @@ sub send_email
 	my $args = $self->_validated_arguments('send_email', \@_);
 	my $sender = $self->_parse_address($self->{'from'});
 
-	# Neither case can be reported with carp: it could come back here
-	if(!defined($self->{'to'})) {
+	# Neither case can be reported with carp: it could come back here.  An
+	# empty list is as good as no recipient: sendmail -t would be given "To: ".
+	my $recipients = $self->{'to'};
+	if(ref($recipients) ne 'ARRAY' || !@{$recipients}) {
 		$self->_say_to_stderr('no_recipient');
 	} elsif(!$sender) {
 		$self->_say_to_stderr('no_sender');
@@ -328,19 +456,6 @@ None.
 
 None of its own.  An unknown key is returned as the text.
 
-=head3 FORMAL SPECIFICATION
-
-    ┌─ I18n ───────────────────────────────────────────────────
-    │ catalogue : KEY ⇸ (ENTRY ∪ (VARIANT ⇸ ENTRY))
-    │ key? : KEY
-    │ args? : NAME ⇸ VALUE
-    │ text! : STRING
-    ├──────────────────────────────────────────────────────────
-    │ key? ∉ dom catalogue ⇒ text! = key?
-    │ key? ∈ dom catalogue ⇒
-    │     text! = sprintf(format(entry), args?(names(entry)))
-    └──────────────────────────────────────────────────────────
-
 =head3 PSEUDOCODE
 
     look the key up; if absent, return the key
@@ -353,36 +468,32 @@ sub i18n :Protected
 {
 	my ($self, $key, $args) = @_;
 
-	my $entry = $MESSAGES{$key};
-	if(defined($entry)) {
-		$entry = $self->_choose_variant($entry, $args || {});
-		my ($format, @names) = @{$entry};
-		$entry = sprintf($format, map { $args->{$_} // q{} } @names);
-	} else {
-		$entry = $key;
-	}
+	$args ||= {};
+	my $entry = defined($MESSAGES{$key}) ? $self->_choose_variant($MESSAGES{$key}, $args) : undef;
 
-	return $entry;
+	# No such key, or a message with no usable variant: show the key, so the
+	# gap is visible rather than fatal
+	return defined($entry) ? sprintf($entry->[0], map { $args->{$_} // q{} } @{$entry}[1 .. $#{$entry}]) : $key;
 }
 
 # Purpose: pick the wording for a message that has variants.
 # Entry: $entry is an array reference (returned as it is) or a hash reference
 #	of variants; $args is a hash reference.
-# Exit: an array reference [ $format, @names ].  The variant named by
-#	$args->{gender} wins, then 'one' when $args->{count} is 1, then 'other'.
+# Exit: an array reference [ $format, @names ], or undef if a hash of variants
+#	has none that applies.  The variant named by $args->{gender} wins, then
+#	'one' when $args->{count} is the number 1, then 'other'.  A count that is
+#	not a number is not 1.
 # Side effects: none.
 sub _choose_variant :Private
 {
 	my ($self, $entry, $args) = @_;
 
 	if(ref($entry) eq 'HASH') {
-		my @wanted = grep { defined } (
-			$args->{'gender'},
-			(defined($args->{'count'}) && $args->{'count'} == 1) ? 'one' : undef,
-			'other',
-		);
+		my $count = $args->{'count'};
+		my $is_one = defined($count) && looks_like_number($count) && $count == 1;
+		my @wanted = grep { defined } ($args->{'gender'}, $is_one ? 'one' : undef, 'other');
 		my ($found) = grep { exists $entry->{$_} } @wanted;
-		$entry = $entry->{$found};
+		$entry = defined($found) ? $entry->{$found} : undef;
 	}
 
 	return $entry;
@@ -436,7 +547,12 @@ sub _validated_arguments :Private
 	# validate_strict() lets an undef through a required parameter, by design,
 	# so a missing message is checked for as well
 	my $reason = $@ || (defined($validated->{'message'}) ? q{} : $self->i18n('no_message'));
-	croak($self->i18n('bad_arguments', { 'routine' => $routine, 'reason' => $reason })) if(length($reason));
+	if(length($reason)) {
+		# The reason ends in a newline when it came from a die(); drop it so the
+		# message stays on one line, with croak's own location after it
+		chomp($reason);
+		croak($self->i18n('bad_arguments', { 'routine' => $routine, 'reason' => $reason }));
+	}
 
 	return $validated;
 }
@@ -474,12 +590,15 @@ sub _one_line :Private
 }
 
 # Purpose: read an override from the environment.
-# Entry: $setting is a key of %ENV_VAR.
+# Entry: $setting is a key of %ENV_VAR; anything else croaks.
 # Exit: the variable's value, or undef if it is unset or empty.
 # Side effects: none.
 sub _from_environment :Private
 {
 	my ($self, $setting) = @_;
+
+	# A misspelt setting is a bug in this module; do not read $ENV{undef}
+	croak($self->i18n('unknown_setting', { 'setting' => $setting })) unless(exists($ENV_VAR{$setting}));
 
 	my $value = $ENV{$ENV_VAR{$setting}};
 
@@ -507,9 +626,15 @@ sub _find_key_file :Private
 	}
 
 	if(defined($dir) && -d $dir) {
-		opendir(my $handle, $dir);
-		my @names = sort grep { /\Q$KEY_FILE_SUFFIX\E\z/ } readdir($handle);
-		closedir($handle);
+		# Only regular files count (a directory called x.private is no key).  A
+		# directory that cannot be read, or that vanishes now, means "no key",
+		# which sends the mail unsigned, not an exception from the logger.
+		my @names = eval {
+			opendir(my $handle, $dir);
+			my @found = sort grep { /\Q$KEY_FILE_SUFFIX\E\z/ && -f File::Spec->catfile($dir, $_) } readdir($handle);
+			closedir($handle);
+			@found;
+		};
 		$keyfile = File::Spec->catfile($dir, $names[-1]) if(@names);
 	}
 
@@ -640,6 +765,11 @@ not raise.
 
 =item *
 
+No MIME headers are added: the body has no declared charset and the subject
+is not encoded.  See L</ENCODING>.
+
+=item *
+
 Redirecting STDERR is process-wide for the duration of the send, so output
 written by another thread meanwhile is lost.
 
@@ -654,6 +784,113 @@ L<Locale::Maketext> if you need more.
 =head1 AUTHOR
 
 Nigel Horne, C<< <njh at nigelhorne.com> >>
+
+=head1 FORMAL SPECIFICATION
+
+The notation is Z.  C<Config> is what an appender holds after C<new>.  A
+message is signed only when a readable key, a domain and a selector are all
+found.
+
+    [STRING, ADDRESS, PATH]
+
+    ┌─ Config ─────────────────────────────────────────────────
+    │ from : STRING
+    │ to : seq STRING
+    │ subject : STRING
+    │ buffered : 𝔹
+    │ buffer : seq STRING
+    ├──────────────────────────────────────────────────────────
+    │ buffered = false ⇒ buffer = ⟨ ⟩
+    └──────────────────────────────────────────────────────────
+
+=head2 send_email
+
+    ┌─ SendEmail ──────────────────────────────────────────────
+    │ Ξ Config
+    │ message? : STRING
+    │ sender : ADDRESS ⇸ ADDRESS        (the parse of from)
+    │ key : PATH ⇸ PATH                 (the key file, if any)
+    │ sent! : 𝔹
+    │ signed! : 𝔹
+    ├──────────────────────────────────────────────────────────
+    │ message? is defined
+    │ sent! = (to ≠ ⟨ ⟩ ∧ sender ≠ ∅ ∧ sendmail succeeds)
+    │ signed! = (sent! ∧ key ≠ ∅ ∧ readable(key) ∧ domain defined
+    │            ∧ selector defined)
+    │ sent! ∧ ¬ signed! ⇒ one warning "no DKIM key"
+    │ to ≠ ⟨ ⟩ ∧ sender ≠ ∅ ∧ ¬ sent! ⇒ one warning "sendmail failed"
+    │ (to = ⟨ ⟩ ∨ sender = ∅) ⇒ one line on STDERR and no warning
+    └──────────────────────────────────────────────────────────
+
+=head2 i18n
+
+    ┌─ I18n ───────────────────────────────────────────────────
+    │ Ξ Config
+    │ catalogue : STRING ⇸ (ENTRY ∪ (STRING ⇸ ENTRY))
+    │ key? : STRING
+    │ args? : STRING ⇸ STRING
+    │ text! : STRING
+    ├──────────────────────────────────────────────────────────
+    │ key? ∉ dom catalogue ⇒ text! = key?
+    │ key? ∈ dom catalogue ⇒
+    │     text! = sprintf(format(entry), args?(names(entry)))
+    │ a name missing from args? is replaced by the empty string
+    └──────────────────────────────────────────────────────────
+
+=head1 STATE DIAGRAM
+
+An appender is always in one of these states:
+
+    EMPTY      no message is waiting
+    PENDING    one or more messages wait in the buffer
+    SENDING    send_email is running
+    GONE       the object has been destroyed
+
+                       new
+                        |
+                        v
+                  +-----------+  log, buffered=1   +-----------+
+                  |           |------------------->|           |--+
+                  |   EMPTY   |                    |  PENDING  |  | log,
+                  |           |                    |           |<-+ buffered=1
+                  +-----------+                    +-----------+
+                    |   ^   |                           |
+        log,        |   |   | destroy                   | flush, or
+        buffered=0  |   |   v                           | destroy
+                    |   |  +------+                     |
+                    |   |  | GONE |                     |
+                    v   |  +------+                     |
+                  +-----------+                         |
+                  |           |<------------------------+
+                  |  SENDING  |
+                  |           |
+                  +-----------+
+                    send_email ends: back to EMPTY (the buffer is cleared)
+
+The same changes in a table:
+
+    From     Trigger                  To       Action or side effect
+    -------  -----------------------  -------  -----------------------------
+    (none)   new                      EMPTY    Checks the settings.  Makes an
+                                               empty buffer if buffered = 1.
+    EMPTY    log, buffered = 1        PENDING  Adds the text to the buffer.
+    PENDING  log, buffered = 1        PENDING  Adds the text to the buffer.
+    EMPTY    log, buffered = 0        SENDING  Calls send_email at once.
+    PENDING  flush                    SENDING  Joins the buffer into one text
+                                               and calls send_email.
+    PENDING  object destroyed         SENDING  Same as flush.
+    SENDING  send_email ends          EMPTY    The buffer is cleared.  The
+                                               result is one of:
+                                               - signed and sent: no output
+                                               - no key: sent, one warning
+                                               - sendmail failed: one warning
+                                               - no to, or bad from: nothing
+                                                 sent, one line on STDERR
+                                               - no message: croaks and the
+                                                 buffer is NOT cleared
+    EMPTY    object destroyed         GONE     Nothing is sent.
+    PENDING  program is ending        GONE     Log::Dispatch::Email warns
+             (global destruction)              that messages were not sent.
 
 =head1 LICENCE AND COPYRIGHT
 

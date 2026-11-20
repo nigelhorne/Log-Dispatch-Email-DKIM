@@ -36,7 +36,11 @@ WriteMakefile(
 		'Web::VWF' => '0.003',
 	},
 	TEST_REQUIRES => {
+		'Test::Memory::Cycle' => 0,
+		'Test::Mockingbird' => 0,
 		'Test::More' => 0,
+		'Test::Most' => 0,
+		'Test::Returns' => 0,
 		'File::Temp' => 0,
 	},
 	clean => { FILES => 'Log-Dispatch-Email-VWFMail-*' },

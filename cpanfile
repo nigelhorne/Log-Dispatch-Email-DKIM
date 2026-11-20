@@ -18,7 +18,11 @@ requires 'Web::VWF', '0.003';
 
 on 'test' => sub {
 	requires 'File::Temp';
+	requires 'Test::Memory::Cycle';
+	requires 'Test::Mockingbird';
 	requires 'Test::More';
+	requires 'Test::Most';
+	requires 'Test::Returns';
 };
 
 on 'develop' => sub {
