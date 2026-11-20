@@ -1,0 +1,215 @@
+{
+   "runs" : [
+      {
+         "OS" : "linux",
+         "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795198504.12523,
+         "name" : "Log-Dispatch-Email-DKIM",
+         "perl" : "5.40.5",
+         "run" : "-e",
+         "start" : 1795198499.86456,
+         "version" : "0.001.0"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795198499.94531,
+         "name" : "Log-Dispatch-Email-DKIM",
+         "perl" : "5.40.5",
+         "run" : "-e",
+         "start" : 1795198499.94525,
+         "version" : "0.001.0"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795198500.1738,
+         "name" : "Log-Dispatch-Email-DKIM",
+         "perl" : "5.40.5",
+         "run" : "t/00-load.t",
+         "start" : 1795198500.17291,
+         "version" : "0.001.0"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795198500.59949,
+         "name" : "Log-Dispatch-Email-DKIM",
+         "perl" : "5.40.5",
+         "run" : "t/dkim.t",
+         "start" : 1795198500.45114,
+         "version" : "0.001.0"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795198501.05395,
+         "name" : "Log-Dispatch-Email-DKIM",
+         "perl" : "5.40.5",
+         "run" : "t/flush.t",
+         "start" : 1795198500.91108,
+         "version" : "0.001.0"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795198501.58129,
+         "name" : "Log-Dispatch-Email-DKIM",
+         "perl" : "5.40.5",
+         "run" : "t/function.t",
+         "start" : 1795198501.4248,
+         "version" : "0.001.0"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795198502.12409,
+         "name" : "Log-Dispatch-Email-DKIM",
+         "perl" : "5.40.5",
+         "run" : "t/internals.t",
+         "start" : 1795198501.98265,
+         "version" : "0.001.0"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795198503.91402,
+         "name" : "Log-Dispatch-Email-DKIM",
+         "perl" : "5.40.5",
+         "run" : "t/locales.t",
+         "start" : 1795198502.44624,
+         "version" : "0.001.0"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795198502.73101,
+         "name" : "Log-Dispatch-Email-DKIM",
+         "perl" : "5.40.5",
+         "run" : "-e",
+         "start" : 1795198502.63239,
+         "version" : "0.001.0"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795198503.10741,
+         "name" : "Log-Dispatch-Email-DKIM",
+         "perl" : "5.40.5",
+         "run" : "-e",
+         "start" : 1795198503.01252,
+         "version" : "0.001.0"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795198503.46552,
+         "name" : "Log-Dispatch-Email-DKIM",
+         "perl" : "5.40.5",
+         "run" : "-e",
+         "start" : 1795198503.37391,
+         "version" : "0.001.0"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795198503.82578,
+         "name" : "Log-Dispatch-Email-DKIM",
+         "perl" : "5.40.5",
+         "run" : "-e",
+         "start" : 1795198503.73404,
+         "version" : "0.001.0"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795198504.099,
+         "name" : "Log-Dispatch-Email-DKIM",
+         "perl" : "5.40.5",
+         "run" : "t/pod.t",
+         "start" : 1795198504.09841,
+         "version" : "0.001.0"
+      }
+   ],
+   "summary" : {
+      "Total" : {
+         "branch" : {
+            "covered" : 4,
+            "error" : 0,
+            "percentage" : 100,
+            "total" : 4,
+            "uncoverable" : 0
+         },
+         "condition" : {
+            "covered" : 3,
+            "error" : 0,
+            "percentage" : 100,
+            "total" : 3,
+            "uncoverable" : 0
+         },
+         "statement" : {
+            "covered" : 97,
+            "percentage" : 100,
+            "total" : 97
+         },
+         "subroutine" : {
+            "covered" : 30,
+            "percentage" : 100,
+            "total" : 30
+         },
+         "total" : {
+            "covered" : 134,
+            "error" : 0,
+            "percentage" : 100,
+            "total" : 134,
+            "uncoverable" : 0
+         }
+      },
+      "blib/lib/Log/Dispatch/Email/DKIM.pm" : {
+         "branch" : {
+            "covered" : 4,
+            "error" : 0,
+            "percentage" : 100,
+            "total" : 4,
+            "uncoverable" : 0
+         },
+         "condition" : {
+            "covered" : 3,
+            "error" : 0,
+            "percentage" : 100,
+            "total" : 3,
+            "uncoverable" : 0
+         },
+         "statement" : {
+            "covered" : 97,
+            "percentage" : 100,
+            "total" : 97
+         },
+         "subroutine" : {
+            "covered" : 30,
+            "percentage" : 100,
+            "total" : 30
+         },
+         "total" : {
+            "covered" : 134,
+            "error" : 0,
+            "percentage" : 100,
+            "total" : 134,
+            "uncoverable" : 0
+         }
+      }
+   }
+}
