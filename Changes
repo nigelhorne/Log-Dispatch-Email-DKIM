@@ -1,4 +1,4 @@
-Revision history for Log-Dispatch-Email-VWFMail
+Revision history for Log-Dispatch-Email-DKIM
 
 0.001.0
 	First release: a Log::Dispatch appender that DKIM signs its mail

@@ -64,7 +64,7 @@
 \.appveyor\.yml
 \.releaserc
 \.lwpcookies
-Log-Dispatch-Email-VWFMail-*
+Log-Dispatch-Email-DKIM-*
 
 # Super-linter per-repo tuning files - not for distribution
 ^\.perlcriticrc$

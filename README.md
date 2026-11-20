@@ -1,6 +1,6 @@
 ## Name
 
-Log::Dispatch::Email::VWFMail - Log::Dispatch appender that DKIM-signs its mail
+Log::Dispatch::Email::DKIM - Log::Dispatch appender that DKIM-signs its mail
 
 ## Version
 
@@ -11,7 +11,7 @@ Version 0.001.0
 Pattern 1: from a log4perl configuration file.
 
 ```
-log4perl.appender.A2=Log::Dispatch::Email::VWFMail
+log4perl.appender.A2=Log::Dispatch::Email::DKIM
 log4perl.appender.A2.from=webmaster@bandsman.co.uk
 log4perl.appender.A2.to=njh@bandsman.co.uk
 log4perl.appender.A2.subject=Error in shop/index.fcgi
@@ -24,7 +24,7 @@ use Log::Dispatch;
 
 my $log = Log::Dispatch->new(
     outputs => [ [
-        'Email::VWFMail',
+        'Email::DKIM',
         'min_level' => 'error',
         'from' => 'webmaster@bandsman.co.uk',
         'to' => ['njh@bandsman.co.uk'],
@@ -108,7 +108,7 @@ will not see it.
 underscore croak if you call them.  Under `prove` the check is switched off
 (`HARNESS_ACTIVE`), so a test can pass where real code would fail.
 - **The message catalogue is shared by the whole program.**  Changing
-`%Log::Dispatch::Email::VWFMail::MESSAGES` changes the words for every
+`%Log::Dispatch::Email::DKIM::MESSAGES` changes the words for every
 appender.  Use `local` to limit the change.
 
 ## Encoding
@@ -201,7 +201,7 @@ use Log::Dispatch;
 
 my $log = Log::Dispatch->new(
     outputs => [ [
-        'Email::VWFMail',
+        'Email::DKIM',
         'min_level' => 'error',
         'from' => 'webmaster@bandsman.co.uk',
         'to' => ['njh@bandsman.co.uk'],
@@ -232,18 +232,18 @@ Unknown keys are ignored.
 ##### Output
 
 ```perl
-{ type => 'object', isa => 'Log::Dispatch::Email::VWFMail' }
+{ type => 'object', isa => 'Log::Dispatch::Email::DKIM' }
 ```
 
 #### Messages
 
-- `VWFMail: no DKIM key for DOMAIN; sending unsigned` (warning)
+- `DKIM: no DKIM key for DOMAIN; sending unsigned` (warning)
 
     No readable key, domain or selector could be found.  The message is sent
     without a signature.  Put a `SELECTOR.private` key in `~/dkim`, or set
     `VWF_MAIL_KEYFILE` or `VWF_MAIL_KEYDIR`.
 
-- `VWFMail: sendmail failed for SENDER` (warning)
+- `DKIM: sendmail failed for SENDER` (warning)
 
     sendmail(1) could not be run or exited with a failure.  Check
     `VWF_MAIL_SENDMAIL` and the mail queue.
@@ -252,12 +252,12 @@ Unknown keys are ignored.
 
     The appender has no recipient, so nothing was sent.  Give it a `to`.
 
-- `VWFMail: no valid From address to send as; message not sent` (STDERR)
+- `DKIM: no valid From address to send as; message not sent` (STDERR)
 
     `from` is missing or is not an address.  Give it a `from` such as
     `webmaster@example.com`.
 
-- `VWFMail: invalid arguments to send_email: REASON` (fatal)
+- `DKIM: invalid arguments to send_email: REASON` (fatal)
 
     The arguments were not a message.  Pass `message => $text`; REASON is the validator's complaint, or
     `message is required`.
@@ -283,7 +283,7 @@ return self
 
 Turns a message key into text for the user, so that every warning and error
 this class raises can be translated or reworded by a subclass or by assigning
-to `%Log::Dispatch::Email::VWFMail::MESSAGES`.  Protected: callable from
+to `%Log::Dispatch::Email::DKIM::MESSAGES`.  Protected: callable from
 this class and its subclasses only.
 
 #### Args
@@ -312,7 +312,7 @@ my $text = $self->i18n('no_key', { 'domain' => 'example.com' });
 ```perl
 # A catalogue entry is [ $sprintf_format, @argument_names ], or a hash
 # of variants of one
-local $Log::Dispatch::Email::VWFMail::MESSAGES{'files'} = {
+local $Log::Dispatch::Email::DKIM::MESSAGES{'files'} = {
     'one' => ['%s file', 'count'],
     'other' => ['%s files', 'count'],
 };
@@ -355,7 +355,7 @@ format the entry with its named arguments
 arguments, so there is no object configuration to carry a locale.
 [Object::Configure](https://metacpan.org/pod/Object%3A%3AConfigure) is therefore not used: there is nowhere for it to hook
 in.  A site changes the wording by assigning to
-`%Log::Dispatch::Email::VWFMail::MESSAGES`, which is global to the process.
+`%Log::Dispatch::Email::DKIM::MESSAGES`, which is global to the process.
 - The key is found by convention (`~/dkim/*.private`, highest name wins) and
 the environment, not configured per appender, for the same reason.  Two
 appenders in one process cannot sign with different keys.
@@ -374,6 +374,10 @@ written by another thread meanwhile is lost.
 - The plural and gender support in `i18n` selects a variant by key; it does
 not know the plural rules of any language beyond one against other.  Use
 [Locale::Maketext](https://metacpan.org/pod/Locale%3A%3AMaketext) if you need more.
+
+## See Also
+
+- [Test Dashboard](https://nigelhorne.github.io/Log-Dispatch-Email-DKIM/coverage/)
 
 ## Author
 

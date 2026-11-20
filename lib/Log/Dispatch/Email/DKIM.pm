@@ -1,4 +1,4 @@
-package Log::Dispatch::Email::VWFMail;
+package Log::Dispatch::Email::DKIM;
 
 use strict;
 use warnings;
@@ -26,7 +26,7 @@ use Sub::Protected;
 
 =head1 NAME
 
-Log::Dispatch::Email::VWFMail - Log::Dispatch appender that DKIM-signs its mail
+Log::Dispatch::Email::DKIM - Log::Dispatch appender that DKIM-signs its mail
 
 =head1 VERSION
 
@@ -67,20 +67,20 @@ Readonly my $SEND_EMAIL_SCHEMA => {
 # site can translate it with local() or by assigning to a key.
 our %MESSAGES = (
 	'no_recipient' => ['To whom should I be sending this e-mail?'],
-	'no_sender' => ['VWFMail: no valid From address to send as; message not sent'],
-	'no_key' => ['VWFMail: no DKIM key for %s; sending unsigned', 'domain'],
+	'no_sender' => ['DKIM: no valid From address to send as; message not sent'],
+	'no_key' => ['DKIM: no DKIM key for %s; sending unsigned', 'domain'],
 	'unknown_domain' => ['unknown domain'],
-	'send_failed' => ['VWFMail: sendmail failed for %s', 'sender'],
-	'unknown_setting' => ['VWFMail: unknown setting %s', 'setting'],
+	'send_failed' => ['DKIM: sendmail failed for %s', 'sender'],
+	'unknown_setting' => ['DKIM: unknown setting %s', 'setting'],
 	'no_message' => ['message is required'],
-	'bad_arguments' => ['VWFMail: invalid arguments to %s: %s', 'routine', 'reason'],
+	'bad_arguments' => ['DKIM: invalid arguments to %s: %s', 'routine', 'reason'],
 );
 
 =head1 SYNOPSIS
 
 Pattern 1: from a log4perl configuration file.
 
-    log4perl.appender.A2=Log::Dispatch::Email::VWFMail
+    log4perl.appender.A2=Log::Dispatch::Email::DKIM
     log4perl.appender.A2.from=webmaster@bandsman.co.uk
     log4perl.appender.A2.to=njh@bandsman.co.uk
     log4perl.appender.A2.subject=Error in shop/index.fcgi
@@ -91,7 +91,7 @@ Pattern 2: directly from Log::Dispatch, sending each message at once.
 
     my $log = Log::Dispatch->new(
         outputs => [ [
-            'Email::VWFMail',
+            'Email::DKIM',
             'min_level' => 'error',
             'from' => 'webmaster@bandsman.co.uk',
             'to' => ['njh@bandsman.co.uk'],
@@ -209,7 +209,7 @@ underscore croak if you call them.  Under C<prove> the check is switched off
 =item *
 
 B<The message catalogue is shared by the whole program.>  Changing
-C<%Log::Dispatch::Email::VWFMail::MESSAGES> changes the words for every
+C<%Log::Dispatch::Email::DKIM::MESSAGES> changes the words for every
 appender.  Use C<local> to limit the change.
 
 =back
@@ -305,7 +305,7 @@ address is used as the sendmail envelope sender and as the signing domain.
 
     my $log = Log::Dispatch->new(
         outputs => [ [
-            'Email::VWFMail',
+            'Email::DKIM',
             'min_level' => 'error',
             'from' => 'webmaster@bandsman.co.uk',
             'to' => ['njh@bandsman.co.uk'],
@@ -332,19 +332,19 @@ Unknown keys are ignored.
 
 =head4 OUTPUT
 
-    { type => 'object', isa => 'Log::Dispatch::Email::VWFMail' }
+    { type => 'object', isa => 'Log::Dispatch::Email::DKIM' }
 
 =head3 MESSAGES
 
 =over 4
 
-=item C<VWFMail: no DKIM key for DOMAIN; sending unsigned> (warning)
+=item C<DKIM: no DKIM key for DOMAIN; sending unsigned> (warning)
 
 No readable key, domain or selector could be found.  The message is sent
 without a signature.  Put a C<SELECTOR.private> key in C<~/dkim>, or set
 C<VWF_MAIL_KEYFILE> or C<VWF_MAIL_KEYDIR>.
 
-=item C<VWFMail: sendmail failed for SENDER> (warning)
+=item C<DKIM: sendmail failed for SENDER> (warning)
 
 sendmail(1) could not be run or exited with a failure.  Check
 C<VWF_MAIL_SENDMAIL> and the mail queue.
@@ -353,12 +353,12 @@ C<VWF_MAIL_SENDMAIL> and the mail queue.
 
 The appender has no recipient, so nothing was sent.  Give it a C<to>.
 
-=item C<VWFMail: no valid From address to send as; message not sent> (STDERR)
+=item C<DKIM: no valid From address to send as; message not sent> (STDERR)
 
 C<from> is missing or is not an address.  Give it a C<from> such as
 C<webmaster@example.com>.
 
-=item C<VWFMail: invalid arguments to send_email: REASON> (fatal)
+=item C<DKIM: invalid arguments to send_email: REASON> (fatal)
 
 The arguments were not a message.  Pass C<< message => $text >>; REASON is the validator's complaint, or
 C<message is required>.
@@ -407,7 +407,7 @@ sub send_email
 
 Turns a message key into text for the user, so that every warning and error
 this class raises can be translated or reworded by a subclass or by assigning
-to C<%Log::Dispatch::Email::VWFMail::MESSAGES>.  Protected: callable from
+to C<%Log::Dispatch::Email::DKIM::MESSAGES>.  Protected: callable from
 this class and its subclasses only.
 
 =head3 Args
@@ -433,7 +433,7 @@ None.
 
     # A catalogue entry is [ $sprintf_format, @argument_names ], or a hash
     # of variants of one
-    local $Log::Dispatch::Email::VWFMail::MESSAGES{'files'} = {
+    local $Log::Dispatch::Email::DKIM::MESSAGES{'files'} = {
         'one' => ['%s file', 'count'],
         'other' => ['%s files', 'count'],
     };
@@ -738,7 +738,7 @@ C<Log::Dispatch> constructs the appender and does not pass on extra
 arguments, so there is no object configuration to carry a locale.
 L<Object::Configure> is therefore not used: there is nowhere for it to hook
 in.  A site changes the wording by assigning to
-C<%Log::Dispatch::Email::VWFMail::MESSAGES>, which is global to the process.
+C<%Log::Dispatch::Email::DKIM::MESSAGES>, which is global to the process.
 
 =item *
 
@@ -778,6 +778,14 @@ written by another thread meanwhile is lost.
 The plural and gender support in C<i18n> selects a variant by key; it does
 not know the plural rules of any language beyond one against other.  Use
 L<Locale::Maketext> if you need more.
+
+=back
+
+=head1 SEE ALSO
+
+=over 4
+
+=item * L<Test Dashboard|https://nigelhorne.github.io/Log-Dispatch-Email-DKIM/coverage/>
 
 =back
 
@@ -902,4 +910,4 @@ please let me know.
 
 =cut
 
-1; # End of Log-Dispatch-Email-VWFMail
+1; # End of Log-Dispatch-Email-DKIM

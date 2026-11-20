@@ -14,25 +14,25 @@ use File::Temp qw(tempdir);
 # Loaded at compile time, as production code does, so the private subs are
 # wrapped before the test's own subs are compiled into the same package
 BEGIN {
-	use_ok('Log::Dispatch::Email::VWFMail');
+	use_ok('Log::Dispatch::Email::DKIM');
 }
 
-my $class = 'Log::Dispatch::Email::VWFMail';
+my $class = 'Log::Dispatch::Email::DKIM';
 
 # A subclass may call the protected i18n(); anyone else may not
 {
 	package Reworded;
-	our @ISA = ('Log::Dispatch::Email::VWFMail');
+	our @ISA = ('Log::Dispatch::Email::DKIM');
 	sub words { my $self = shift; return $self->i18n(@_) }
 }
 
 # The package under test, so that the private subs may be called
 {
-	package Log::Dispatch::Email::VWFMail;
+	package Log::Dispatch::Email::DKIM;
 	sub test_private { my ($self, $name, @args) = @_; return $self->$name(@args) }
 }
 
-my $log = Log::Dispatch::Email::VWFMail->new(
+my $log = Log::Dispatch::Email::DKIM->new(
 	'name' => 'VF', 'min_level' => 'debug',
 	'from' => 'webmaster@bandsman.co.uk', 'to' => ['njh@bandsman.co.uk'],
 	'subject' => 'Subject', 'buffered' => 0,
@@ -56,11 +56,11 @@ subtest 'encapsulation' => sub {
 
 subtest 'i18n' => sub {
 	is($subclassed->words('no_key', { 'domain' => 'example.com' }),
-		'VWFMail: no DKIM key for example.com; sending unsigned', 'interpolates the arguments');
-	is($subclassed->words('no_key'), 'VWFMail: no DKIM key for ; sending unsigned', 'a missing argument is empty');
+		'DKIM: no DKIM key for example.com; sending unsigned', 'interpolates the arguments');
+	is($subclassed->words('no_key'), 'DKIM: no DKIM key for ; sending unsigned', 'a missing argument is empty');
 	is($subclassed->words('no_such_key'), 'no_such_key', 'an unknown key is returned as the text');
 
-	local $Log::Dispatch::Email::VWFMail::MESSAGES{'files'} = {
+	local $Log::Dispatch::Email::DKIM::MESSAGES{'files'} = {
 		'one' => ['%s file', 'count'],
 		'other' => ['%s files', 'count'],
 		'feminine' => ['her %s file', 'count'],
@@ -107,7 +107,7 @@ sub sent_by {
 	my @warnings;
 	{
 		local $SIG{'__WARN__'} = sub { push @warnings, @_ };
-		my $appender = Log::Dispatch::Email::VWFMail->new('name' => 'VF', 'min_level' => 'debug', 'buffered' => 0, %{$settings});
+		my $appender = Log::Dispatch::Email::DKIM->new('name' => 'VF', 'min_level' => 'debug', 'buffered' => 0, %{$settings});
 		$appender->log('level' => 'error', 'message' => "body\n");
 	}
 	my $sent = '';

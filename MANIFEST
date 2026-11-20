@@ -1,6 +1,6 @@
 Changes
 cpanfile
-lib/Log/Dispatch/Email/VWFMail.pm
+lib/Log/Dispatch/Email/DKIM.pm
 LICENSE
 Makefile.PL
 MANIFEST
@@ -13,4 +13,4 @@ t/function.t
 t/internals.t
 t/locales.t
 t/pod.t
-t/vwfmail.t
+t/dkim.t

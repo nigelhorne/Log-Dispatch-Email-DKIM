@@ -12,10 +12,10 @@ if($^O eq 'darwin') {
 }
 
 WriteMakefile(
-	NAME			=> 'Log::Dispatch::Email::VWFMail',
+	NAME			=> 'Log::Dispatch::Email::DKIM',
 	AUTHOR		=> q{Nigel Horne <njh@nigelhorne.com>},
-	VERSION_FROM	=> 'lib/Log/Dispatch/Email/VWFMail.pm',
-	ABSTRACT_FROM	=> 'lib/Log/Dispatch/Email/VWFMail.pm',
+	VERSION_FROM	=> 'lib/Log/Dispatch/Email/DKIM.pm',
+	ABSTRACT_FROM	=> 'lib/Log/Dispatch/Email/DKIM.pm',
 	LICENSE			=> 'gpl_2',	# the bundled LICENSE is GPL version 2
 	PREREQ_PM => {
 		'Carp' => 0,
@@ -43,21 +43,21 @@ WriteMakefile(
 		'Test::Returns' => 0,
 		'File::Temp' => 0,
 	},
-	clean => { FILES => 'Log-Dispatch-Email-VWFMail-*' },
+	clean => { FILES => 'Log-Dispatch-Email-DKIM-*' },
 	dist => $dist,
 	META_MERGE => {	# https://perldoc.perl.org/CPAN::Meta::Spec
 		'meta-spec' => { version => 2 },
 		resources => {
 			repository => {
 				type => 'git',
-				url => 'https://github.com/nigelhorne/Log-Dispatch-Email-VWFMail.git',
-				web => 'https://github.com/nigelhorne/Log-Dispatch-Email-VWFMail',
+				url => 'https://github.com/nigelhorne/Log-Dispatch-Email-DKIM.git',
+				web => 'https://github.com/nigelhorne/Log-Dispatch-Email-DKIM',
 			}, bugtracker => {
-				web => 'https://rt.cpan.org/Public/Dist/Display.html?Name=Log-Dispatch-Email-VWFMail',
-				url => 'https://rt.cpan.org/Public/Dist/Display.html?Name=Log-Dispatch-Email-VWFMail',
-				# web => 'https://github.com/nigelhorne/Log-Dispatch-Email-VWFMail/issues',
-				# url => 'https://github.com/nigelhorne/Log-Dispatch-Email-VWFMail/issues',
-				mailto => 'bug-Log-Dispatch-Email-VWFMail@rt.cpan.org'
+				web => 'https://rt.cpan.org/Public/Dist/Display.html?Name=Log-Dispatch-Email-DKIM',
+				url => 'https://rt.cpan.org/Public/Dist/Display.html?Name=Log-Dispatch-Email-DKIM',
+				# web => 'https://github.com/nigelhorne/Log-Dispatch-Email-DKIM/issues',
+				# url => 'https://github.com/nigelhorne/Log-Dispatch-Email-DKIM/issues',
+				mailto => 'bug-Log-Dispatch-Email-DKIM@rt.cpan.org'
 			}
 		},
 	},

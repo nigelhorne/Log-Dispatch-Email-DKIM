@@ -24,7 +24,7 @@ use File::Spec;
 use File::Temp qw(tempdir);
 
 BEGIN {
-	use_ok('Log::Dispatch::Email::VWFMail');
+	use_ok('Log::Dispatch::Email::DKIM');
 }
 
 # One locale of each kind: English, German and an East Asian one
@@ -40,14 +40,14 @@ use strict;
 use warnings;
 use Errno qw(ENOENT);
 use lib $ENV{'TEST_LIB'};
-use Log::Dispatch::Email::VWFMail;
+use Log::Dispatch::Email::DKIM;
 
 my $expected = do { local $! = ENOENT; "$!" };
 
 my @warnings;
 {
 	local $SIG{'__WARN__'} = sub { push @warnings, @_ };
-	my $log = Log::Dispatch::Email::VWFMail->new(
+	my $log = Log::Dispatch::Email::DKIM->new(
 		'name' => 'VF', 'min_level' => 'debug', 'buffered' => 0,
 		'from' => 'webmaster@bandsman.co.uk', 'to' => ['njh@bandsman.co.uk'], 'subject' => 'S',
 	);
@@ -83,8 +83,8 @@ foreach my $locale (@locales) {
 			local $TODO = 'Web::VWF::Mail loses $! by passing it to carp()';
 			ok((grep { /Cannot run \Q$missing\E: \Q$expected\E/ } @warnings), 'the OS string appears, intact, in the warning');
 		}
-		ok((grep { /VWFMail: sendmail failed for webmaster\@bandsman\.co\.uk/ } @warnings), 'and the appender raises its own warning');
-		ok((grep { /VWFMail: no DKIM key for bandsman\.co\.uk; sending unsigned/ } @warnings), 'and says the message is unsigned');
+		ok((grep { /DKIM: sendmail failed for webmaster\@bandsman\.co\.uk/ } @warnings), 'and the appender raises its own warning');
+		ok((grep { /DKIM: no DKIM key for bandsman\.co\.uk; sending unsigned/ } @warnings), 'and says the message is unsigned');
 	};
 }
 
@@ -93,17 +93,17 @@ subtest 'its own messages do not depend on the locale' => sub {
 	local $ENV{'LC_ALL'} = 'de_DE.UTF-8';
 	{
 		package Reworded;
-		our @ISA = ('Log::Dispatch::Email::VWFMail');
+		our @ISA = ('Log::Dispatch::Email::DKIM');
 		sub words { my $self = shift; return $self->i18n(@_) }
 	}
 	my $log = Reworded->new(
 		'name' => 'VF', 'min_level' => 'debug',
 		'from' => 'webmaster@bandsman.co.uk', 'to' => ['njh@bandsman.co.uk'],
 	);
-	is($log->words('send_failed', { 'sender' => 'a@b.com' }), 'VWFMail: sendmail failed for a@b.com', 'English wording');
+	is($log->words('send_failed', { 'sender' => 'a@b.com' }), 'DKIM: sendmail failed for a@b.com', 'English wording');
 
-	local $Log::Dispatch::Email::VWFMail::MESSAGES{'send_failed'} = ['VWFMail: sendmail fehlgeschlagen fuer %s', 'sender'];
-	is($log->words('send_failed', { 'sender' => 'a@b.com' }), 'VWFMail: sendmail fehlgeschlagen fuer a@b.com', 'a translation replaces it');
+	local $Log::Dispatch::Email::DKIM::MESSAGES{'send_failed'} = ['DKIM: sendmail fehlgeschlagen fuer %s', 'sender'];
+	is($log->words('send_failed', { 'sender' => 'a@b.com' }), 'DKIM: sendmail fehlgeschlagen fuer a@b.com', 'a translation replaces it');
 };
 
 done_testing();

@@ -13,7 +13,7 @@ use File::Spec;
 use File::Temp qw(tempdir);
 
 BEGIN {
-	use_ok('Log::Dispatch::Email::VWFMail');
+	use_ok('Log::Dispatch::Email::DKIM');
 }
 
 # Mail::DKIM is a prerequisite, but say so plainly: without it Web::VWF::Mail
@@ -81,7 +81,7 @@ sub log_message {
 	{
 		local $SIG{'__WARN__'} = sub { push(@warnings, @_) };
 
-		my $log = Log::Dispatch::Email::VWFMail->new(%{$settings});
+		my $log = Log::Dispatch::Email::DKIM->new(%{$settings});
 		$log->log(level => 'error', message => $message);
 	}
 
