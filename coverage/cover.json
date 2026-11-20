@@ -3,138 +3,160 @@
       {
          "OS" : "linux",
          "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
-         "dir" : "/home/runner/work/Log-Dispatch-Email-VWFMail/Log-Dispatch-Email-VWFMail",
-         "finish" : 1795191707.55678,
-         "name" : "Log-Dispatch-Email-VWFMail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795192858.6226,
+         "name" : "Log-Dispatch-Email-DKIM",
          "perl" : "5.40.5",
          "run" : "-e",
-         "start" : 1795191704.09595,
+         "start" : 1795192853.63879,
          "version" : "0.001.0"
       },
       {
          "OS" : "linux",
          "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
-         "dir" : "/home/runner/work/Log-Dispatch-Email-VWFMail/Log-Dispatch-Email-VWFMail",
-         "finish" : 1795191704.21506,
-         "name" : "Log-Dispatch-Email-VWFMail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795192853.77083,
+         "name" : "Log-Dispatch-Email-DKIM",
          "perl" : "5.40.5",
          "run" : "-e",
-         "start" : 1795191704.21495,
+         "start" : 1795192853.77073,
          "version" : "0.001.0"
       },
       {
          "OS" : "linux",
          "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
-         "dir" : "/home/runner/work/Log-Dispatch-Email-VWFMail/Log-Dispatch-Email-VWFMail",
-         "finish" : 1795191704.51966,
-         "name" : "Log-Dispatch-Email-VWFMail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795192854.10137,
+         "name" : "Log-Dispatch-Email-DKIM",
          "perl" : "5.40.5",
          "run" : "t/00-load.t",
-         "start" : 1795191704.51865,
+         "start" : 1795192854.10019,
          "version" : "0.001.0"
       },
       {
          "OS" : "linux",
          "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
-         "dir" : "/home/runner/work/Log-Dispatch-Email-VWFMail/Log-Dispatch-Email-VWFMail",
-         "finish" : 1795191704.9438,
-         "name" : "Log-Dispatch-Email-VWFMail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795192854.61079,
+         "name" : "Log-Dispatch-Email-DKIM",
+         "perl" : "5.40.5",
+         "run" : "t/dkim.t",
+         "start" : 1795192854.51397,
+         "version" : "0.001.0"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795192855.10501,
+         "name" : "Log-Dispatch-Email-DKIM",
+         "perl" : "5.40.5",
+         "run" : "t/flush.t",
+         "start" : 1795192855.05358,
+         "version" : "0.001.0"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795192855.68968,
+         "name" : "Log-Dispatch-Email-DKIM",
+         "perl" : "5.40.5",
+         "run" : "t/function.t",
+         "start" : 1795192855.5673,
+         "version" : "0.001.0"
+      },
+      {
+         "OS" : "linux",
+         "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795192856.30307,
+         "name" : "Log-Dispatch-Email-DKIM",
          "perl" : "5.40.5",
          "run" : "t/internals.t",
-         "start" : 1795191704.89953,
+         "start" : 1795192856.25727,
          "version" : "0.001.0"
       },
       {
          "OS" : "linux",
          "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
-         "dir" : "/home/runner/work/Log-Dispatch-Email-VWFMail/Log-Dispatch-Email-VWFMail",
-         "finish" : 1795191706.71346,
-         "name" : "Log-Dispatch-Email-VWFMail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795192858.24066,
+         "name" : "Log-Dispatch-Email-DKIM",
          "perl" : "5.40.5",
          "run" : "t/locales.t",
-         "start" : 1795191705.36034,
+         "start" : 1795192856.74514,
          "version" : "0.001.0"
       },
       {
          "OS" : "linux",
          "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
-         "dir" : "/home/runner/work/Log-Dispatch-Email-VWFMail/Log-Dispatch-Email-VWFMail",
-         "finish" : 1795191705.61247,
-         "name" : "Log-Dispatch-Email-VWFMail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795192857.03031,
+         "name" : "Log-Dispatch-Email-DKIM",
          "perl" : "5.40.5",
          "run" : "-e",
-         "start" : 1795191705.60656,
+         "start" : 1795192857.0236,
          "version" : "0.001.0"
       },
       {
          "OS" : "linux",
          "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
-         "dir" : "/home/runner/work/Log-Dispatch-Email-VWFMail/Log-Dispatch-Email-VWFMail",
-         "finish" : 1795191705.95029,
-         "name" : "Log-Dispatch-Email-VWFMail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795192857.3973,
+         "name" : "Log-Dispatch-Email-DKIM",
          "perl" : "5.40.5",
          "run" : "-e",
-         "start" : 1795191705.94515,
+         "start" : 1795192857.39215,
          "version" : "0.001.0"
       },
       {
          "OS" : "linux",
          "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
-         "dir" : "/home/runner/work/Log-Dispatch-Email-VWFMail/Log-Dispatch-Email-VWFMail",
-         "finish" : 1795191706.28763,
-         "name" : "Log-Dispatch-Email-VWFMail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795192857.77145,
+         "name" : "Log-Dispatch-Email-DKIM",
          "perl" : "5.40.5",
          "run" : "-e",
-         "start" : 1795191706.2826,
+         "start" : 1795192857.76651,
          "version" : "0.001.0"
       },
       {
          "OS" : "linux",
          "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
-         "dir" : "/home/runner/work/Log-Dispatch-Email-VWFMail/Log-Dispatch-Email-VWFMail",
-         "finish" : 1795191706.62514,
-         "name" : "Log-Dispatch-Email-VWFMail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795192858.14331,
+         "name" : "Log-Dispatch-Email-DKIM",
          "perl" : "5.40.5",
          "run" : "-e",
-         "start" : 1795191706.62004,
+         "start" : 1795192858.13809,
          "version" : "0.001.0"
       },
       {
          "OS" : "linux",
          "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
-         "dir" : "/home/runner/work/Log-Dispatch-Email-VWFMail/Log-Dispatch-Email-VWFMail",
-         "finish" : 1795191707.01072,
-         "name" : "Log-Dispatch-Email-VWFMail",
+         "dir" : "/home/runner/work/Log-Dispatch-Email-DKIM/Log-Dispatch-Email-DKIM",
+         "finish" : 1795192858.58179,
+         "name" : "Log-Dispatch-Email-DKIM",
          "perl" : "5.40.5",
          "run" : "t/pod.t",
-         "start" : 1795191706.97803,
-         "version" : "0.001.0"
-      },
-      {
-         "OS" : "linux",
-         "abstract" : "Log::Dispatch appender that DKIM-signs its mail",
-         "dir" : "/home/runner/work/Log-Dispatch-Email-VWFMail/Log-Dispatch-Email-VWFMail",
-         "finish" : 1795191707.43182,
-         "name" : "Log-Dispatch-Email-VWFMail",
-         "perl" : "5.40.5",
-         "run" : "t/vwfmail.t",
-         "start" : 1795191707.33582,
+         "start" : 1795192858.54528,
          "version" : "0.001.0"
       }
    ],
    "summary" : {
       "Total" : {
          "branch" : {
-            "covered" : 3,
-            "error" : 1,
-            "percentage" : 75,
+            "covered" : 4,
+            "error" : 0,
+            "percentage" : 100,
             "total" : 4,
             "uncoverable" : 0
          },
          "condition" : {
-            "covered" : 1,
-            "error" : 2,
-            "percentage" : 33.3333333333333,
+            "covered" : 3,
+            "error" : 0,
+            "percentage" : 100,
             "total" : 3,
             "uncoverable" : 0
          },
@@ -145,9 +167,8 @@
             "total" : 1
          },
          "statement" : {
-            "covered" : 93,
-            "error" : 1,
-            "percentage" : 98.936170212766,
+            "covered" : 94,
+            "percentage" : 100,
             "total" : 94
          },
          "subroutine" : {
@@ -156,25 +177,25 @@
             "total" : 29
          },
          "total" : {
-            "covered" : 127,
-            "error" : 4,
-            "percentage" : 96.9465648854962,
+            "covered" : 131,
+            "error" : 0,
+            "percentage" : 100,
             "total" : 131,
             "uncoverable" : 0
          }
       },
-      "blib/lib/Log/Dispatch/Email/VWFMail.pm" : {
+      "blib/lib/Log/Dispatch/Email/DKIM.pm" : {
          "branch" : {
-            "covered" : 3,
-            "error" : 1,
-            "percentage" : 75,
+            "covered" : 4,
+            "error" : 0,
+            "percentage" : 100,
             "total" : 4,
             "uncoverable" : 0
          },
          "condition" : {
-            "covered" : 1,
-            "error" : 2,
-            "percentage" : 33.3333333333333,
+            "covered" : 3,
+            "error" : 0,
+            "percentage" : 100,
             "total" : 3,
             "uncoverable" : 0
          },
@@ -185,9 +206,8 @@
             "total" : 1
          },
          "statement" : {
-            "covered" : 93,
-            "error" : 1,
-            "percentage" : 98.936170212766,
+            "covered" : 94,
+            "percentage" : 100,
             "total" : 94
          },
          "subroutine" : {
@@ -196,9 +216,9 @@
             "total" : 29
          },
          "total" : {
-            "covered" : 127,
-            "error" : 4,
-            "percentage" : 96.9465648854962,
+            "covered" : 131,
+            "error" : 0,
+            "percentage" : 100,
             "total" : 131,
             "uncoverable" : 0
          }
